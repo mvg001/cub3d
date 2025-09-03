@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:13:58 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/02 16:55:48 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:31:47 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,31 @@ t_map	*map_parse(char **lines, t_map *map)
 
 int	is_empty_line(char *line)
 {
-    char *p;
-
     if (line == NULL)
         return (0);
-    p = line;
-    while (*p)
+    while (*line)
     {
-        if (*p != ' ' && *p != '\n' && *p != '\t')
+        if (*line != ' ' && *line != '\t')
             return (0);
-        p++;
+        line++;
     }
     return (1);
 }
 
 int is_map_line(char *line)
 {
-    char    *p;
     int     count;
 
     if (line == NULL)
         return (0);
-    p = line;
     count = 0;
-    while (*p != '\0')
+    while (*line != '\0')
     {
-        if (*p != ' ' && *p != '0' && *p != '1')
+        if (*line != ' ' && *line != '0' && *line != '1')
             return (0);
-        if (*p == '0' || *p == '1')
+        if (*line == '0' || *line == '1')
             count++;
-        p++;
+        line++;
     }
     return (count > 0);
 }

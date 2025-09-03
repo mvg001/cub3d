@@ -3,13 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:40:49 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/01 18:13:45 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:31:05 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
+#include <stddef.h>
+#include <stdio.h>
 #include "map.h"
 #include "libft.h"
 
@@ -38,6 +41,7 @@ char	**read_all_lines(int fd, int buffer_size)
     t_buf   *rbuf;
     void    **lines;
     char    *line;
+    char    *pnl;
 
     rbuf = gnl_alloc_buf(buffer_size);
     if (rbuf == NULL)
@@ -48,6 +52,9 @@ char	**read_all_lines(int fd, int buffer_size)
         line = gnl_getline(fd, rbuf);
         if (line == NULL)
             break ;
+        pnl = ft_strchr(line, '\n');
+        if (pnl != NULL)
+            *pnl = '\0';
         lines = ptr_array_append(lines, line);
     }
     gnl_dispose(rbuf);
@@ -75,5 +82,27 @@ t_map	*map_readfd(int fd)
         return (NULL);
     }
     ft_dispose_split(lines);
+    return (map);
+}
+
+t_map	*map_read(char *filename)
+{
+    t_map	*map;
+    int		fd;
+
+    if (filename == NULL)
+    {
+        ft_dprintf(2, "Error\nNULL filename\n");
+        return (NULL);
+    }
+    fd = open(filename, O_RDONLY);
+    if (fd < 0)
+    {
+        ft_dprintf(2, "Error\n");
+        perror(filename);
+        return (NULL);
+    }
+    map = map_readfd(fd);
+    close(fd);
     return (map);
 }
