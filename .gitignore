@@ -56,5 +56,5 @@ dkms.conf
 
 #docs/
 *.pdf
-*.graphmlz
+#*.graphmlz
 lixo
