@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/03 13:12:35 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:53:06 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,8 @@ void	map_texture_2(t_parser *p);
 void	map_texture_3(t_parser *p);
 void	map_texture_4(t_parser *p);
 void	map_texture_5(t_parser *p);
+void	map_texture_6(t_parser *p);
+void	map_texture_7(t_parser *p);
+void	map_texture_8(t_parser *p);
+void	map_texture_9(t_parser *p);
 #endif
