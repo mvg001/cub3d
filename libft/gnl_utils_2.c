@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:28:26 by user1             #+#    #+#             */
-/*   Updated: 2025/09/03 18:10:41 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/04 10:44:10 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	gnl_ungetchar(int c, t_buf *rb)
 {
 	if (rb == NULL || c < 0 || rb->ungetc >= 0)
-		return (EXIT_FAILURE);
+		return (0);
 	rb->ungetc = c;
-	return (EXIT_SUCCESS);
+	return (1);
 }
 
 int	gnl_getchar(int fd, t_buf *rb)
