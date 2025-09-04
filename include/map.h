@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/03 14:53:06 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:21:36 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 
 typedef struct s_map
 {
-    char		*no_texture;
-    char		*so_texture;
-    char		*we_texture;
-    char		*ea_texture;
-    uint32_t	floor_color;
-    uint32_t	ceiling_color;
-    int			n_lines;
-    int			n_columns;
-    char        **plane;
+    char	*no_texture;
+    char	*so_texture;
+    char	*we_texture;
+    char	*ea_texture;
+    int    	floor_color;
+    int 	ceiling_color;
+    int		n_lines;
+    int		n_columns;
+    char	**plane;
 }	t_map;
 
 typedef struct s_parser
@@ -38,6 +38,7 @@ typedef struct s_parser
     char **words;
 } t_parser;
 
+void	*map_create();
 void	map_destroy(t_map **map);
 char	**read_all_lines(int fd, int buffer_size);
 t_map	*map_readfd(int fd);
@@ -55,4 +56,12 @@ void	map_texture_6(t_parser *p);
 void	map_texture_7(t_parser *p);
 void	map_texture_8(t_parser *p);
 void	map_texture_9(t_parser *p);
+int		is_texture_line(char *line, t_map *map);
+
+void	map_color1(t_parser *p);
+void	map_color2(t_parser *p);
+void	map_color3(t_parser *p);
+void	map_color4(t_parser *p);
+void	map_color5(t_parser *p);
+int		is_color_line(char *line, t_map *map);
 #endif

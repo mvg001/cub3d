@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:13:58 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/03 10:31:47 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:01:02 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_map	*map_parse(char **lines, t_map *map)
 int	is_empty_line(char *line)
 {
     if (line == NULL)
-        return (0);
+        return (1);
     while (*line)
     {
         if (*line != ' ' && *line != '\t')
@@ -36,18 +36,17 @@ int	is_empty_line(char *line)
 
 int is_map_line(char *line)
 {
-    int     count;
-
     if (line == NULL)
         return (0);
-    count = 0;
-    while (*line != '\0')
-    {
-        if (*line != ' ' && *line != '0' && *line != '1')
-            return (0);
-        if (*line == '0' || *line == '1')
-            count++;
+    while (*line == ' ')
         line++;
+    if (*line == '1')
+    {
+        line++;
+        while (ft_strchr(" 01NSWE", *line) != NULL)
+            line++;
+        if (*line == '\0' || *line == '\n')
+            return (1);
     }
-    return (count > 0);
+    return (0);
 }

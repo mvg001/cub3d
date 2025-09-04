@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:40:49 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/03 10:31:05 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:21:22 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 #include <stdio.h>
 #include "map.h"
 #include "libft.h"
+
+void	*map_create()
+{
+    t_map	*m;
+    
+    m = ft_calloc(1, sizeof(t_map));
+    if (m == NULL)
+        return (m);
+    m->floor_color = -1;
+    m->ceiling_color = -1;
+    return (m);
+}
 
 void	map_destroy(t_map **map)
 {
