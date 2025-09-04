@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   gnl_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user1 <user1@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:29:31 by mvassall          #+#    #+#             */
-/*   Updated: 2025/03/01 11:20:41 by user1            ###   ########.fr       */
+/*   Updated: 2025/09/03 18:07:09 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_buf	*gnl_alloc_buf(unsigned int buffer_size)
 	sb->buf[0] = '\0';
 	sb->start = NULL;
 	sb->buffer_size = buffer_size;
+	sb->ungetc = -1;
 	return (sb);
 }
 

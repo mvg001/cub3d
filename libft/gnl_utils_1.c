@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gnl_utils_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user1 <user1@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:29:31 by mvassall          #+#    #+#             */
-/*   Updated: 2025/03/07 11:32:27 by user1            ###   ########.fr       */
+/*   Updated: 2025/09/03 18:02:18 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,4 @@ char	*get_next_line(int fd)
 		tb[fd] = NULL;
 	}
 	return (line);
-}
-
-int	gnl_getchar(int fd, t_buf *rb)
-{
-	int	c;
-
-	if (fd < 0 || rb == NULL)
-		return (-2);
-	if (rb->start == NULL || *rb->start == '\0')
-		if (gnl_read_buf(fd, rb) <= 0)
-			return (-1);
-	c = *rb->start;
-	rb->start++;
-	return (c);
 }
