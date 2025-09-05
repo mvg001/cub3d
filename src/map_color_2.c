@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:38:53 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/04 15:10:33 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/05 11:15:20 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static int	update_color(char **words, t_map *map)
 
     if (ft_split_count(words) != 4)
         return (0);
-    i = 0;
-    while (i < 3)
+    i = -1;
+    while (++i < 3)
     {
         if (!ft_is_int(words[i+1]))
             return (0);
@@ -44,7 +44,7 @@ static int	update_color(char **words, t_map *map)
         if (color[i] < 0 || color[i] > 255)
             return (0);
     }
-    n = (color[0] << 16) | (color[1] << 8) | color[0];
+    n = (color[0] << 16) | (color[1] << 8) | color[2];
     if (words[0][0] == 'C')
         map->ceiling_color = n;
     else if (words[0][0] == 'F')
@@ -52,6 +52,22 @@ static int	update_color(char **words, t_map *map)
     else
         return (0);
     return (1);
+}
+
+void map_print_parsing_status(t_parser *p)
+{
+    int i;
+
+    if (p == NULL)
+        return ;
+    ft_dprintf(2, "\nstate: %d\ncc: '%s'\ncw: '%s'\n",
+        p->state, p->cc, p->cw);
+    if (p->words != NULL && p->words[0] != NULL)
+    {
+        i = -1;
+        while (p->words[++i] != NULL)
+            ft_dprintf(2, "words[%d]: '%s'\n", i, p->words[i]);
+    }
 }
 
 int	is_color_line(char *line, t_map *map)

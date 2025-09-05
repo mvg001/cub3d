@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:40:49 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/04 16:21:22 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/05 11:02:18 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	map_destroy(t_map **map)
         free(m->ea_texture);
     if (m->plane != NULL)
         ft_dispose_split(m->plane);
+    free(*map);
     *map = NULL;
 }
 

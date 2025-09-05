@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 13:51:42 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/04 14:26:16 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/05 11:05:57 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,24 @@ void	map_color2(t_parser *p)
 {
 	while (*p->cc == ' ')
 		p->cc++;
-	if ('0' <= *p->cc && *p->cc <= '9')
+	if (ft_isdigit(*p->cc))
 	{
 		p->cw = ft_append_char(p->cw, *p->cc);
 		p->state = 3;
 		return ;
 	}
 	p->state = -1;
-	return ;
 }
 
 void	map_color3(t_parser *p)
 {
-	while ('0' <= *p->cc && *p->cc <= '9')
+	while (ft_isdigit(*p->cc))
 	{
 		p->cw = ft_append_char(p->cw, *p->cc);
 		p->cc++;
 	}
-	if (*p->cc == '\0' || ft_strchr(" ,\n", *p->cc))
-	{
-		p->words = (char **)ptr_array_append((void **)p->words, p->cw);
-		p->cw = NULL;
-	}
+	p->words = (char **)ptr_array_append((void **)p->words, p->cw);
+	p->cw = NULL;
 	if (*p->cc == ' ')
 		p->state = 4;
 	else if (*p->cc == ',')
@@ -83,10 +79,9 @@ void	map_color5(t_parser *p)
 {
 	while (*p->cc == ' ')
 		p->cc++;
-	if ('0' <= *p->cc && *p->cc <= '9')
+	if (ft_isdigit(*p->cc))
 	{
 		p->cw = ft_append_char(p->cw, *p->cc);
-		p->cc++;
 		p->state = 3;
 		return ;
 	}
