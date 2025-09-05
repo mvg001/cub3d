@@ -18,12 +18,16 @@ void test(char *line, int expected) {
 }
 
 int main(void) {
-    t_map *m = map_create();
-    if (m == NULL) return -1;
-    // test("NO ./path_to_the_north_texture", 1);
-    // test("NO     ./path_to_the_north_texture    ", 1);
-    // test("NO \"./path_to_the_north_texture\"", 1);
-
-    map_destroy(&m);
+    test("NO ./path_to_the_north_texture", 1);
+    test("NO     ./path_to_the_north_texture    ", 1);
+    test("NO \"./path_to_the_north_texture\"", 1);
+    test("NO   \"./path to the north texture\"   ", 1);
+    test("SO   \"./path\\\\to the \\\\ north texture\"   ", 1);
+    test("NO   ./path to the north texture\"   ", 1);
+    test("SO     ./path_to_the_north_texture", 1);
+    test("WE     ./path_to_the_north_texture", 1);
+    test("EA     ./path_to_the_north_texture", 1);
+    test("NO   \"./path to the north texture   ", 0);
+    test("WO   ./path to the north texture", 0);
     return 0;
 }

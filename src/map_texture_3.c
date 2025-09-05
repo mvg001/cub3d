@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:51:50 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/05 13:00:30 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/05 14:15:17 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,9 @@ int	is_texture_line(char *line, t_map *map)
 	p.cc = line;
 	while (p.state > 0)
 	{
-		map_print_parsing_status(&p);
 		f[p.state](&p);
 		p.cc++;
 	}
-	map_print_parsing_status(&p);
 	if (p.state == 0)
 		return (update_texture(p.words, map));
 	if (p.cw != NULL)
