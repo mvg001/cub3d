@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 13:02:10 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/03 14:52:39 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/05 12:44:36 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,22 @@
 
 void map_texture_6(t_parser *p)
 {
-    if (*p->cc == '\0' || *p->cc == '\n')
-    {
-        p->state = -1;
-        return ;
-    }
     if (*p->cc == '\\')
     {
         p->state = 8;
         return ;
     }
-    p->cw = ft_append_char(p->cw, *p->cc);
-    p->state = 7;
-    return ;
+    if (ft_isprint(*p->cc))
+    {
+        p->cw = ft_append_char(p->cw, *p->cc);
+        p->state = 7;
+        return ;
+    }
+    p->state = -1;
 }
 
 void map_texture_7(t_parser *p)
 {
-    if (*p->cc == '\0' || *p->cc == '\n')
-    {
-        p->state = -1;
-        return ;
-    }
     if (*p->cc == '\\')
     {
         p->state = 8;
@@ -50,13 +44,17 @@ void map_texture_7(t_parser *p)
         p->state = 9;
         return ;
     }
-    p->cw = ft_append_char(p->cw, *p->cc);
-    return ;
+    if (ft_isprint(*p->cc))
+    {
+        p->cw = ft_append_char(p->cw, *p->cc);
+        return ;
+    }
+    p->state = -1;
 }
 
 void map_texture_8(t_parser *p)
 {
-    if (*p->cc == '\"')
+    if (*p->cc == '\"' || *p->cc == '\\')
     {
         p->cw = ft_append_char(p->cw, *p->cc);
         p->state = 7;
@@ -68,7 +66,7 @@ void map_texture_8(t_parser *p)
 
 void map_texture_9(t_parser *p)
 {
-    while (*p->cc == ' ')
+    while (ft_isspace(*p->cc))
         p->cc++;
     if (*p->cc == '\0' || *p->cc == '\n')
     {

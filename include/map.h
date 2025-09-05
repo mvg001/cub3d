@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/04 16:21:36 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/05 12:38:25 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_map	*map_parse(char **lines, t_map *map);
 int		is_empty_line(char *line);
 int		is_map_line(char *line);
 
+void	map_print_parsing_status(t_parser *p);
 void	map_texture_1(t_parser *p);
 void	map_texture_2(t_parser *p);
 void	map_texture_3(t_parser *p);
