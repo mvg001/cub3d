@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_texture_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:51:50 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/05 14:15:17 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/07 14:05:42 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int update_texture(char **words, t_map *map)
 	return success;
 }
 
-int	is_texture_line(char *line, t_map *map)
+int	map_is_texture_line(char *line, t_map *map)
 {
 	t_parser	p;
 	void		(*f[10])(t_parser *);

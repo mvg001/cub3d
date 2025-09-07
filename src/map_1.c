@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map1.c                                             :+:      :+:    :+:   */
+/*   map_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:40:49 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/05 11:02:18 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/07 16:29:34 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include "map.h"
 #include "libft.h"
+#include "player.h"
 
 void	*map_create()
 {
@@ -49,7 +50,7 @@ void	map_destroy(t_map **map)
     *map = NULL;
 }
 
-char	**read_all_lines(int fd, int buffer_size)
+char	**map_read_all_lines(int fd, int buffer_size)
 {
     t_buf   *rbuf;
     void    **lines;
@@ -79,7 +80,7 @@ t_map	*map_readfd(int fd)
     t_map	*map;
     char    **lines;
 
-    lines = read_all_lines(fd, MAP_BUFFER_SIZE);
+    lines = map_read_all_lines(fd, MAP_BUFFER_SIZE);
     if (lines == NULL)
         return (NULL);
     map = ft_calloc(1, sizeof(t_map));

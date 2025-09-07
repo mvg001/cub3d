@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_color_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:38:53 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/05 11:15:20 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/07 14:05:00 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void map_print_parsing_status(t_parser *p)
     }
 }
 
-int	is_color_line(char *line, t_map *map)
+int	map_is_color_line(char *line, t_map *map)
 {
     t_parser	p;
     void		(*f[6])(t_parser *);

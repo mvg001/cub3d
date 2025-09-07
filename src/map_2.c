@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map2.c                                             :+:      :+:    :+:   */
+/*   map_2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:13:58 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/06 22:34:44 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/07 16:48:51 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "map.h"
 #include "libft.h"
 
-int	is_empty_line(char *line)
+int	map_is_empty_line(char *line)
 {
     if (line == NULL)
         return (1);
@@ -29,7 +29,7 @@ int	is_empty_line(char *line)
     return (1);
 }
 
-int	is_map_line(char *line)
+int	map_is_map_line(char *line)
 {
     char    *p;
     int     count1;
@@ -56,30 +56,33 @@ int	is_map_line(char *line)
     return (0);
 }
 
-void	map_print(t_map *map)
+int	map_print(t_map *map)
 {
     int	i;
+
+    if (map == NULL)
+        return (0);
     ft_putendl_fd("\n### MAP:", 2);
-    ft_dprintf(2, "NO: '%s'\n", map->no_texture);
-    ft_dprintf(2, "SO: '%s'\n", map->so_texture);
-    ft_dprintf(2, "WE: '%s'\n", map->we_texture);
-    ft_dprintf(2, "EA: '%s'\n", map->ea_texture);
-    ft_dprintf(2, "F: %x\n", map->floor_color);
-    ft_dprintf(2, "C: %s\n", map->ceiling_color);
-    ft_dprintf(2, "n_lines: %d\n", map->n_lines);
-    ft_dprintf(2, "n_columns: %d\n", map->n_columns);
+    ft_dprintf(2, "NO: '%s'\nSO: '%s'\n", map->no_texture, map->so_texture);
+    ft_dprintf(2, "WE: '%s'\nEA: '%s'\n", map->we_texture, map->ea_texture);
+    ft_dprintf(2, "F: %x\nC: %x\n", map->floor_color, map->ceiling_color);
+    ft_dprintf(2, "n_lines: %d\nn_columns: %d\n", map->n_lines, map->n_columns);
+    ft_dprintf(2, "player_init_x: %d\n", map->player_init_x);
+    ft_dprintf(2, "player_init_y: %d\n", map->player_init_y);
+    ft_dprintf(2, "player_init_dir: %c\n", map->player_init_dir);
     if (map->plane == NULL)
-    {
-        ft_putendl_fd("plane: empty", 2);
-        return ;
-    }
+        return (ft_putendl_fd("plane: empty", 2), 0);
     i = -1;
     ft_dprintf(2, "plane:\n");
     while (map->plane[++i] != NULL)
-        ft_dprintf(2, "%d: '%s'\n", i, map->plane[i]);
+        if (i < 10)
+            ft_dprintf(2, " %d: '%s'\n", i, map->plane[i]);
+        else
+            ft_dprintf(2, "%d: '%s'\n", i, map->plane[i]);
+    return (0);
 }
 
-int	is_texture_ok(char *filename)
+int	map_is_texture_ok(char *filename)
 {
     int	fd;
 
@@ -96,7 +99,7 @@ int	is_texture_ok(char *filename)
     return (1);
 }
 
-int	largest_line(char **lines)
+int	map_largest_line(char **lines)
 {
     int i;
     int len;
