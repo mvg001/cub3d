@@ -3,13 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:13:58 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/05 15:55:17 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/06 22:34:44 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
+#include <stdio.h>
 #include <unistd.h>
 #include "map.h"
 #include "libft.h"
@@ -29,17 +31,27 @@ int	is_empty_line(char *line)
 
 int	is_map_line(char *line)
 {
+    char    *p;
+    int     count1;
+
     if (line == NULL)
         return (0);
-    while (*line == ' ')
-        line++;
-    if (*line == '1')
+    count1 = 0;
+    p = line;
+    while (*p == ' ')
+        p++;
+    if (*p == '1')
     {
-        line++;
-        while (*line && ft_strchr(" 01NSWE", *line) != NULL)
-            line++;
-        if (*line == '\0')
-            return (1);
+        p++;
+        count1++;
+        while (*p && ft_strchr(" 01NSWE", *p) != NULL)
+        {
+            if (*p == '1')
+                count1++;    
+            p++;
+        }
+        if (*p == '\0')
+            return (count1 > 1);
     }
     return (0);
 }
@@ -56,12 +68,49 @@ void	map_print(t_map *map)
     ft_dprintf(2, "C: %s\n", map->ceiling_color);
     ft_dprintf(2, "n_lines: %d\n", map->n_lines);
     ft_dprintf(2, "n_columns: %d\n", map->n_columns);
-    if (map->plane != NULL)
+    if (map->plane == NULL)
     {
-        i = -1;
-        ft_dprintf(2, "plane:\n");
-        while (map->plane[++i] != NULL)
-            ft_dprintf(2, "%d: '%s'\n", i, map->plane[i]);
+        ft_putendl_fd("plane: empty", 2);
+        return ;
     }
-    ft_putendl_fd("plane: empty", 2);
+    i = -1;
+    ft_dprintf(2, "plane:\n");
+    while (map->plane[++i] != NULL)
+        ft_dprintf(2, "%d: '%s'\n", i, map->plane[i]);
+}
+
+int	is_texture_ok(char *filename)
+{
+    int	fd;
+
+    if (filename == NULL)
+        return (0);
+    fd = open(filename, O_RDONLY);
+    if (fd < 0)
+    {
+        ft_putendl_fd("ERROR", 2);
+        perror(filename);
+        return (0);
+    }
+    close(fd);
+    return (1);
+}
+
+int	largest_line(char **lines)
+{
+    int i;
+    int len;
+    int llen;
+
+    if (lines == NULL)
+        return (-1);
+    i = -1;
+    llen = 0;
+    while (lines[++i] != NULL)
+    {
+        len = ft_strlen(lines[i]);
+        if (len > llen)
+            llen = len;
+    }
+    return (llen);
 }

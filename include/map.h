@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/05 15:54:34 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/06 21:51:15 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	map_texture_7(t_parser *p);
 void	map_texture_8(t_parser *p);
 void	map_texture_9(t_parser *p);
 int		is_texture_line(char *line, t_map *map);
-
+int		is_texture_ok(char *filename);
+int		largest_line(char **lines);
 void	map_color1(t_parser *p);
 void	map_color2(t_parser *p);
 void	map_color3(t_parser *p);
