@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:15:08 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/07 17:13:59 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/07 20:07:08 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	map_set_player(t_map *map)
 		while (!found && ++jx < map->n_columns)
 			found = ft_strchr("NSWE", map->plane[iy][jx]) != NULL;
 	}
-	if (iy >= map->n_lines || jx >= map->n_columns)
-		return (ft_dprintf(2, "Error\nUnable to find player\n"), 0);
+	if (!found)
+		return (ft_dprintf(2, "Error\nProcessing player position\n"), 0);
 	map->player_init_y = iy;
 	map->player_init_x = jx;
 	map->player_init_dir = map->plane[iy][jx];
