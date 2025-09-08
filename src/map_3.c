@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:54:52 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/07 14:59:31 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/08 11:25:18 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,7 @@ t_map	*map_parse(char **lines, t_map *map)
             continue;
         if (map_is_map_line(lines[i]))
             break ;
-        ft_dprintf(2, "Error\nUnable to parse line %d\n", i);
-        return (NULL);
+        return (ft_dprintf(2, "Error\nUnable to parse line %d\n", i+1), NULL);
     }
     while (lines[i] != NULL && map_is_map_line(lines[i]))
     {
@@ -108,9 +107,17 @@ t_map	*map_parse(char **lines, t_map *map)
         i++;
     }
     if (lines[i] != NULL)
-    {
-        ft_dprintf(2, "Error\nUnable to parse line %d\n", i);
-        return (NULL);
-    }
+        return (ft_dprintf(2, "Error\nUnable to parse line %d\n", i+1), NULL);
     return (map_check(map));
+}
+
+int	map_check_size(t_map *map)
+{
+	map->n_lines = ft_split_count(map->plane);
+	map->n_columns = map_largest_line(map->plane);
+	if (map->n_lines >= 3 && map->n_columns >= 3)
+		return (1);
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd("Map too small", 2);
+	return (0);	
 }

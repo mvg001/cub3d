@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/07 16:48:21 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/08 11:31:37 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ char	*map_trim_right(char *line);
 t_map	*map_check(t_map *map);
 int		map_check_size(t_map *map);
 int		map_set_player(t_map *map);
+int		map_flood_check(t_map *map);
 #endif

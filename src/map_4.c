@@ -3,27 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map_4.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:15:08 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/07 20:07:08 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/08 12:09:30 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 #include "libft.h"
-#include "player.h"
-
-int	map_check_size(t_map *map)
-{
-	map->n_lines = ft_split_count(map->plane);
-	map->n_columns = map_largest_line(map->plane);
-	if (map->n_lines >= 3 && map->n_columns >= 3)
-		return (1);
-	ft_putendl_fd("Error", 2);
-	ft_putendl_fd("Map too small", 2);
-	return (0);	
-}
 
 int	map_set_player(t_map *map)
 {
@@ -61,9 +49,37 @@ t_map	*map_check(t_map *map)
 		return (NULL);
 	if (!map_adjust_lines(map))
 		return (NULL);
-	if (map_count_players(map) != 1)
+	if (map_count_players(map) != 1 || !map_set_player(map))
 		return (NULL);
-	if (!map_set_player(map))
+	if (!map_flood_check(map))
 		return (NULL);
 	return (map);
+}
+
+static int	flood(t_map *map, int x, int y)
+{
+	if (y < 0 || y >= map->n_lines || x < 0 || x >= map->n_columns)
+		return (0);
+	if (map->plane[y][x] != '1' && map->plane[y][x] != '.')
+	{
+		map->plane[y][x] = '.';
+		if (!flood(map, x,  y-1)
+			|| !flood(map, x,  y+1)
+			|| !flood(map, x-1, y)
+			|| !flood(map, x+1, y))
+			return (0);
+	}
+	return (1);
+}
+
+int	map_flood_check(t_map *map)
+{
+	if (map == NULL)
+		return (0);
+	if (!flood(map, map->player_init_x, map->player_init_y))
+	{
+		ft_dprintf(2, "Error\nMap not surrounded by walls\n");
+		return (0);
+	}
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_texture_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:51:50 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/07 14:05:42 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/08 11:30:44 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,28 @@ static void	init_texture_sm(void (*f[])(t_parser *), t_parser *p)
 	p->words = NULL;
 }
 
-static int update_texture(char **words, t_map *map)
+static int	update_texture(char **words, t_map *map)
 {
-	int success;
+	int		success;
+	char	*filename;
 
 	success = 1;
+	filename = ft_strtrim(words[1], " ");
 	if (ft_strcmp(words[0], "NO") == 0)
-		map->no_texture = words[1];
+		map->no_texture = filename;
 	else if (ft_strcmp(words[0], "SO") == 0)
-		map->so_texture = words[1];
+		map->so_texture = filename;
 	else if (ft_strcmp(words[0], "WE") == 0)
-		map->we_texture = words[1];
+		map->we_texture = filename;
 	else if (ft_strcmp(words[0], "EA") == 0)
-		map->ea_texture = words[1];
+		map->ea_texture = filename;
 	else
 		success = 0;
+	free(words[1]);
 	free(words[0]);
-	if (!success)
-		free(words[1]);
 	free(words);
+	if (!success)
+		free(filename);
 	return success;
 }
 
