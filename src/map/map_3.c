@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:54:52 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/08 11:25:18 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:29:37 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*map_trim_right(char *line)
     if (line == NULL)
         return (NULL);
     i = ft_strlen(line) - 1;
-    while (i >= 0 && line[i] != '1')
+    while (i >= 0 && line[i] != WALL_CHAR)
     {
         if (line[i] == ' ' || line[i] == '0')
             line[i] = '\0';
@@ -113,6 +113,11 @@ t_map	*map_parse(char **lines, t_map *map)
 
 int	map_check_size(t_map *map)
 {
+	if (map == NULL || map->plane == NULL)
+    {
+		ft_dprintf(2, "Error\nEmpty map\n");
+		return (0);
+    }
 	map->n_lines = ft_split_count(map->plane);
 	map->n_columns = map_largest_line(map->plane);
 	if (map->n_lines >= 3 && map->n_columns >= 3)

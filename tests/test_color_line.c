@@ -6,7 +6,7 @@ void test(char *line, t_map *map, int expected) {
     expected = expected != 0;
     map->ceiling_color = -1;
     map->floor_color = -1;
-    int result = is_color_line(line, map);
+    int result = map_is_color_line(line, map);
     printf("%s: %d\n", 
         result == expected ? "OK " : "NOK", result);
     if (result) {

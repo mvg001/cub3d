@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:15:08 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/09 12:30:05 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:00:24 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	map_set_player(t_map *map)
 
 t_map	*map_check(t_map *map)
 {
+	if (map == NULL)
+		return (NULL);
 	if (!map_is_texture_ok(map->so_texture)
 		|| !map_is_texture_ok(map->so_texture)
 		|| !map_is_texture_ok(map->we_texture)
@@ -60,9 +62,9 @@ static int	flood(t_map *map, int x, int y)
 {
 	if (y < 0 || y >= map->n_lines || x < 0 || x >= map->n_columns)
 		return (0);
-	if (map->plane[y][x] != '1' && map->plane[y][x] != '.')
+	if (map->plane[y][x] != WALL_CHAR && map->plane[y][x] != EMPTY_CHAR)
 	{
-		map->plane[y][x] = '.';
+		map->plane[y][x] = EMPTY_CHAR;
 		if (!flood(map, x,  y-1)
 			|| !flood(map, x,  y+1)
 			|| !flood(map, x-1, y)
@@ -84,14 +86,4 @@ int	map_walls_check(t_map *map)
 	return (1);
 }
 
-int	map_is_wall_position(t_map *map, double x, double y)
-{
-	int	i;
-	int	j;
 
-	i = (int)y;
-	j = (int)x;
-	if (i < 0 || i >= map->n_lines || j < 0 || j >= map->n_columns)
-		return (0);
-	return (map->plane[i][j] != '.');
-}

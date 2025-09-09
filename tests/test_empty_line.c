@@ -3,7 +3,7 @@
 
 void test(char *line, int expected) {
     expected = expected != 0;
-    int result = is_empty_line(line);
+    int result = map_is_empty_line(line);
     printf("%s: %d: '%s'\n", 
         result == expected ? "OK " : "NOK", result, line);
 }

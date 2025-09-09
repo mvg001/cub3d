@@ -5,7 +5,7 @@ void test(char *line, int expected) {
     t_map *m = map_create();
     printf("\n=======test line '%s'\n", line);
     expected = expected != 0;
-    int result = is_texture_line(line, m);
+    int result = map_is_texture_line(line, m);
     printf("%s: %d\n", 
         result == expected ? "OK " : "NOK", result);
     if (result) {

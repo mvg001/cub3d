@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/09 12:42:54 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:58:53 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "vec2d.h"
 
 #define MAP_BUFFER_SIZE 4096
+
+#define WALL_CHAR   '1'
+#define EMPTY_CHAR  '.'
 
 typedef struct s_map
 {
@@ -26,7 +29,7 @@ typedef struct s_map
     int 	ceiling_color;
     int		n_lines;
     int		n_columns;
-    char	**plane;
+    char	**plane;        // empty cells: EMPTY_CHAR, wall cells: WALL_CHAR
     int		player_init_y;
     int		player_init_x;
     char	player_init_dir;
@@ -47,6 +50,7 @@ int		map_print(t_map *map);
 t_map	*map_read(char *filename);
 int		map_is_wall_position(t_map *map, double x, double y);
 int		map_is_wall(t_map *map, t_vec2d *pos);
+int		map_get_cell_char(t_map *map, double x, double y);
 
 // Internal routines
 t_map	*map_readfd(int fd);

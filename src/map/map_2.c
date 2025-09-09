@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:13:58 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/09 12:48:47 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:44:23 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	map_is_empty_line(char *line)
         return (1);
     while (*line)
     {
-        if (*line != ' ' && *line != '\t')
+        if (!ft_isspace(*line))
             return (0);
         line++;
     }
@@ -32,26 +32,26 @@ int	map_is_empty_line(char *line)
 int	map_is_map_line(char *line)
 {
     char    *p;
-    int     count1;
+    int     wall_counter;
 
     if (line == NULL)
         return (0);
-    count1 = 0;
+    wall_counter = 0;
     p = line;
     while (*p == ' ')
         p++;
-    if (*p == '1')
+    if (*p == WALL_CHAR)
     {
         p++;
-        count1++;
+        wall_counter++;
         while (*p && ft_strchr(" 01NSWE", *p) != NULL)
         {
-            if (*p == '1')
-                count1++;    
+            if (*p == WALL_CHAR)
+                wall_counter++;    
             p++;
         }
         if (*p == '\0')
-            return (count1 > 1);
+            return (wall_counter > 1);
     }
     return (0);
 }

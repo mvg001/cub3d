@@ -4,7 +4,7 @@
 void test(char *line, int expected) {
     printf("\n=======test line '%s'\n", line);
     expected = expected != 0;
-    int result = is_map_line(line);
+    int result = map_is_map_line(line);
     printf("%s: %d\n", 
         result == expected ? "OK " : "NOK", result);
 }
