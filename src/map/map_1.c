@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:40:49 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/07 16:29:34 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/09 12:34:13 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 #include <stdio.h>
 #include "map.h"
 #include "libft.h"
-#include "player.h"
 
-void	*map_create()
+t_map	*map_create()
 {
     t_map	*m;
     

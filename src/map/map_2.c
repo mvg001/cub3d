@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:13:58 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/07 16:48:51 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/09 12:48:47 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	map_print(t_map *map)
             ft_dprintf(2, " %d: '%s'\n", i, map->plane[i]);
         else
             ft_dprintf(2, "%d: '%s'\n", i, map->plane[i]);
-    return (0);
+    return (1);
 }
 
 int	map_is_texture_ok(char *filename)

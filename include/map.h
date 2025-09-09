@@ -6,12 +6,13 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/09 12:30:27 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/09 12:42:54 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 #define MAP_H
+#include "vec2d.h"
 
 #define MAP_BUFFER_SIZE 4096
 
@@ -40,11 +41,12 @@ typedef struct s_parser
 } t_parser;
 
 // General usage
-void	*map_create();
+t_map	*map_create();
 void	map_destroy(t_map **map);
 int		map_print(t_map *map);
 t_map	*map_read(char *filename);
 int		map_is_wall_position(t_map *map, double x, double y);
+int		map_is_wall(t_map *map, t_vec2d *pos);
 
 // Internal routines
 t_map	*map_readfd(int fd);
