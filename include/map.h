@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/08 11:31:37 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/09 12:30:27 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,16 @@ typedef struct s_parser
     char **words;
 } t_parser;
 
+// General usage
 void	*map_create();
 void	map_destroy(t_map **map);
 int		map_print(t_map *map);
-char	**map_read_all_lines(int fd, int buffer_size);
-t_map	*map_readfd(int fd);
 t_map	*map_read(char *filename);
+int		map_is_wall_position(t_map *map, double x, double y);
+
+// Internal routines
+t_map	*map_readfd(int fd);
+char	**map_read_all_lines(int fd, int buffer_size);
 t_map	*map_parse(char **lines, t_map *map);
 int		map_is_empty_line(char *line);
 int		map_is_map_line(char *line);
@@ -73,5 +77,5 @@ char	*map_trim_right(char *line);
 t_map	*map_check(t_map *map);
 int		map_check_size(t_map *map);
 int		map_set_player(t_map *map);
-int		map_flood_check(t_map *map);
+int		map_walls_check(t_map *map);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:15:08 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/08 12:09:30 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/09 12:30:05 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_map	*map_check(t_map *map)
 		return (NULL);
 	if (map_count_players(map) != 1 || !map_set_player(map))
 		return (NULL);
-	if (!map_flood_check(map))
+	if (!map_walls_check(map))
 		return (NULL);
 	return (map);
 }
@@ -72,7 +72,7 @@ static int	flood(t_map *map, int x, int y)
 	return (1);
 }
 
-int	map_flood_check(t_map *map)
+int	map_walls_check(t_map *map)
 {
 	if (map == NULL)
 		return (0);
@@ -82,4 +82,16 @@ int	map_flood_check(t_map *map)
 		return (0);
 	}
 	return (1);
+}
+
+int	map_is_wall_position(t_map *map, double x, double y)
+{
+	int	i;
+	int	j;
+
+	i = (int)y;
+	j = (int)x;
+	if (i < 0 || i >= map->n_lines || j < 0 || j >= map->n_columns)
+		return (0);
+	return (map->plane[i][j] != '.');
 }
