@@ -11,11 +11,12 @@
 # **************************************************************************** #
 
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -g3 -fsanitize=address -Iinclude -Ilibft
+CFLAGS := -Wall -Werror -Wextra -g3 -fsanitize=address -I./src/include -Ilibft
 #CFLAGS := -Wall -Werror -Wextra -pthread -g3 -fsanitize=thread
 #CFLAGS := -Wall -Werror -Wextra -g3
 RM := /bin/rm -f
 SRC_DIRS := ./src
+INC_DIR := ./src/include
 BUILD_DIR := ./build
 
 SRCS := $(shell find $(SRC_DIRS) -name '*.c')
@@ -32,16 +33,16 @@ show:
 	echo $(OBJS)
 
 $(NAME): $(OBJS) libft/libft.a
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Llibft -lft
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Llibft -lft -lm
 
-$(OBJS): include/map.h include/player.h include/vec2d.h libft/libft.h
+$(OBJS): libft/libft.h $(shell find $(INC_DIR) -name '*.h')
 
 libft/libft.a:
 	cd libft && $(MAKE) all
 
 $(BUILD_DIR)/%.c.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I./include -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
 	$(RM) -r $(BUILD_DIR)
