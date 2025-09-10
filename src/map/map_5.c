@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_5.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 12:39:08 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/09 15:05:11 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/10 09:59:09 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
-#include "vec2d.h"
 
-int	map_get_cell_char(t_map *map, double x, double y)
+int	map_get_cell_d(t_map *map, double x, double y)
 {
 	int	i;
 	int	j;
@@ -26,15 +25,15 @@ int	map_get_cell_char(t_map *map, double x, double y)
 }
 int	map_get_cell(t_map *map, t_vec2d *pos)
 {
-    return (map_get_cell_char(map, pos->x, pos->y));
+    return (map_get_cell_d(map, pos->x, pos->y));
 }
 
-int	map_is_wall_position(t_map *map, double x, double y)
+int	map_is_cell_wall_d(t_map *map, double x, double y)
 {
-	return (map_get_cell_char(map, x, y) != EMPTY_CHAR);
+	return (map_get_cell_d(map, x, y) != EMPTY_CHAR);
 }
 
-int	map_is_wall(t_map *map, t_vec2d *pos)
+int	map_is_cell_wall(t_map *map, t_vec2d *pos)
 {
-    return (map_is_wall_position(map, pos->x, pos->y));
+    return (map_is_cell_wall_d(map, pos->x, pos->y));
 }

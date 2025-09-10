@@ -3,5 +3,5 @@
 -Werror
 -Wunreachable-code
 -Ofast 
--I./include
+-I./src/include
 -I./libft

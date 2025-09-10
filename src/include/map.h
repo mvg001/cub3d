@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/09 14:58:53 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/10 09:58:19 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ t_map	*map_create();
 void	map_destroy(t_map **map);
 int		map_print(t_map *map);
 t_map	*map_read(char *filename);
-int		map_is_wall_position(t_map *map, double x, double y);
-int		map_is_wall(t_map *map, t_vec2d *pos);
-int		map_get_cell_char(t_map *map, double x, double y);
+int		map_is_cell_wall_d(t_map *map, double x, double y);
+int		map_is_cell_wall(t_map *map, t_vec2d *pos);
+int		map_get_cell_d(t_map *map, double x, double y);
+int		map_get_cell(t_map *map, t_vec2d *pos);
 
 // Internal routines
 t_map	*map_readfd(int fd);
