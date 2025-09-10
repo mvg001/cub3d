@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/29 17:23:51 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/10 20:28:06 by mvassall         ###   ########.fr       */
+/*   Created: 2025/09/10 19:53:56 by mvassall          #+#    #+#             */
+/*   Updated: 2025/09/10 20:33:08 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
-# include "vec2d.h"
+#ifndef CUB3D_H
+# define CUB3D_H
+# include "map.h"
+# include "player.h"
 
-typedef struct s_player
+# define TILE_SIZE	32
+# define FOV		66	// degrees
+
+typedef struct	s_ctx
 {
-	t_vec2d	pos;
-	t_vec2d	dir;
-}	t_player;
-t_player	*player_create(double posx, double posy, double dirx, double diry);
-t_player	*player_create_char_dir(double xpos, double ypos, char cdir);
-void	    player_destroy(t_player **player);
+	t_map	*map;
+	t_player *player;
+}	t_ctx;
+
+void	run_app(t_map *map, t_player *player);
 #endif
