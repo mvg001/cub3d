@@ -5,3 +5,4 @@
 -Ofast 
 -I./src/include
 -I./libft
+-I./MLX42/include

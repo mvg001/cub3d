@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/29 17:23:51 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/10 11:24:31 by mvassall         ###   ########.fr       */
+/*   Created: 2025/09/10 10:42:53 by mvassall          #+#    #+#             */
+/*   Updated: 2025/09/10 10:50:53 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
-# include "vec2d.h"
+#ifndef RAY_H
+# define RAY_H
 
-typedef struct s_player
-{
-	t_vec2d	pos;
-	t_vec2d	dir;
-}	t_player;
-t_player	*player_create(double posx, double posy, double dirx, double diry);
-void	    player_destroy(t_player **player);
 #endif

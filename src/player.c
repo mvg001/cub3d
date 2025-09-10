@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 17:27:35 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/01 14:54:55 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/10 11:26:02 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_player	*player_create(double xpos, double ypos, double dirx, double diry)
 {
 	t_player	*player;
 
+	if (dirx == 0.0 && diry == 0.0)
+		return (NULL);
 	player = ft_calloc(1, sizeof(t_player));
 	if (player == NULL)
 		return (NULL);

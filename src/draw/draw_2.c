@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
+/*   draw_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/29 17:23:51 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/10 11:24:31 by mvassall         ###   ########.fr       */
+/*   Created: 2025/09/10 15:07:20 by mvassall          #+#    #+#             */
+/*   Updated: 2025/09/10 16:14:07 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
-# include "vec2d.h"
+#include "MLX42/MLX42.h"
+#include "draw.h"
+#include <stdint.h>
 
-typedef struct s_player
+int	draw_rectangle(mlx_image_t *img, t_rectangle *rect, uint32_t color)
 {
-	t_vec2d	pos;
-	t_vec2d	dir;
-}	t_player;
-t_player	*player_create(double posx, double posy, double dirx, double diry);
-void	    player_destroy(t_player **player);
-#endif
+	uint32_t	ix;
+	uint32_t	iy;
+
+	if (img == NULL || rect == NULL)
+		return (0);
+	iy = 0;
+	while (iy < rect->height)
+	{
+		ix = 0;
+		while (ix < rect->width)
+		{
+			mlx_put_pixel(img, rect->pos.x + ix, rect->pos.y + iy, color);
+			ix++;
+		}
+		iy++;
+	}
+	return (1);
+}
