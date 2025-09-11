@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 12:48:18 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/11 16:28:29 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/11 19:21:24 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	draw_map(t_ctx	*ctx)
 	return ;
 }
 
-static void	draw_player(t_ctx *ctx)
+/*static void	draw_player(t_ctx *ctx)
 {
 	t_rectangle	r;
 	uint32_t	d;
@@ -55,12 +55,28 @@ static void	draw_player(t_ctx *ctx)
 	r.pos.x = (ctx->player->pos.x * ctx->tilesize) - d;
 	r.pos.y = (ctx->player->pos.y * ctx->tilesize) - d;
 	draw_rectangle(ctx->img, &r, COLOR_RED);
+}*/
+
+static void	draw_player(t_ctx *ctx)
+{
+	t_circle	c;
+
+	c.center.x = (ctx->player->pos.x * ctx->tilesize);
+	c.center.y = (ctx->player->pos.y * ctx->tilesize);
+	c.radius = (ctx->tilesize * 3 + 4) / 8;
+	draw_circle(ctx->img, &c, COLOR_RED);
 }
 
 static void	draw(void *param)
 {
 	t_ctx	*ctx;
+	static int	x = 0;
 
+	if (x == 0)
+	{
+		x = 1;
+		return ;
+	}
 	ctx = (t_ctx *)param;
 	draw_map(ctx);
 	draw_player(ctx);

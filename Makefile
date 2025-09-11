@@ -39,7 +39,7 @@ $(OBJS): $(LIBFT)/libft.h $(LIBMLX)/include/MLX42/MLX42.h \
 	$(shell find $(INC_DIR) -name '*.h')
 
 $(LIBFT)/libft.a:
-	cd libft && $(MAKE) all
+	cd $(LIBFT) && $(MAKE) all
 
 $(LIBMLX)/build/libmlx42.a:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
@@ -50,6 +50,7 @@ $(BUILD_DIR)/%.c.o: %.c
 
 clean:
 	$(RM) -rf $(BUILD_DIR)
+	$(RM) -rf $(LIBFT)/libft.a
 	$(RM) -rf $(LIBMLX)/build
 
 fclean: clean
