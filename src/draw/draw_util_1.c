@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_2.c                                           :+:      :+:    :+:   */
+/*   draw_util_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 15:07:20 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/10 15:51:36 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/11 11:17:34 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include <stdint.h>
 
-int32_t abs_dif(int32_t a, int32_t b)
+int32_t draw_abs_dif(int32_t a, int32_t b)
 {
         if (a < b)
                 return (b - a);
         return (a - b);
 }
 
-uint32_t mix_colors(uint32_t c1, int w1, uint32_t c2, int w2)
+uint32_t draw_mix_colors(uint32_t c1, int w1, uint32_t c2, int w2)
 {
         int		total;
         uint32_t	r;

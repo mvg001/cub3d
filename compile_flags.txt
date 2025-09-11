@@ -3,6 +3,6 @@
 -Werror
 -Wunreachable-code
 -Ofast 
--I./src/include
--I./libft
--I./MLX42/include
+-I./include
+-I./lib/libft
+-I./lib/MLX42/include
