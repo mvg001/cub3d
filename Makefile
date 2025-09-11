@@ -6,11 +6,11 @@
 #    By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/11 11:05:02 by user1             #+#    #+#              #
-#    Updated: 2025/09/11 11:13:29 by mvassall         ###   ########.fr        #
+#    Updated: 2025/09/11 16:33:10 by mvassall         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME   := cub3d
+NAME   := cub3d.exe
 CC     := cc
 CFLAGS := -Wall -Werror -Wextra -g3 -fsanitize=address -Ofast
 #CFLAGS := -Wall -Werror -Wextra -pthread -g3 -fsanitize=thread
