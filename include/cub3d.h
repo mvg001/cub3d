@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 19:53:56 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/11 16:06:07 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/12 12:29:48 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,19 @@
 # define CUB3D_H
 #include "ctx.h"
 
-# define FOV			66	// degrees
+# define FOV			66		// degrees
 # define WINDOW_WIDTH	1024	// pixels
-# define WINDOW_HEIGHT	768	// pixels
+# define WINDOW_HEIGHT	768		// pixels
 # define TILE_COLOR     0x808080ff
 # define COLOR_BLACK	0x000000ff
 # define COLOR_RED		0xff0000ff
-int	run_app(t_ctx *ctx);
+
+# define PLAYER_SIZE			0.3
+# define PLAYER_STEP			0.25		// plane
+# define PLAYER_FAST_STEP		0.75		// plane
+# define PLAYER_ROTATION		2			// degrees
+# define PLAYER_FAST_ROTATION	5		// degrees
+
+int		run_app(t_ctx *ctx);
+void	cub3d_key_callback(mlx_key_data_t keydata, void *param);
 #endif

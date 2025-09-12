@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 12:48:18 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/11 19:21:24 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/12 12:11:00 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "map.h"
 #include <stdint.h>
 
-static void	draw_map(t_ctx	*ctx)
+static void	cub3d_draw_map(t_ctx	*ctx)
 {
 	t_rectangle	r;
 	int			i;
@@ -44,59 +44,53 @@ static void	draw_map(t_ctx	*ctx)
 	return ;
 }
 
-/*static void	draw_player(t_ctx *ctx)
-{
-	t_rectangle	r;
-	uint32_t	d;
-
-	r.width	= (ctx->tilesize * 3) / 4;
-	r.height = r.width;
-	d = (r.width + 1) / 2;
-	r.pos.x = (ctx->player->pos.x * ctx->tilesize) - d;
-	r.pos.y = (ctx->player->pos.y * ctx->tilesize) - d;
-	draw_rectangle(ctx->img, &r, COLOR_RED);
-}*/
-
-static void	draw_player(t_ctx *ctx)
+static void	cub3d_draw_player(t_ctx *ctx)
 {
 	t_circle	c;
 
 	c.center.x = (ctx->player->pos.x * ctx->tilesize);
 	c.center.y = (ctx->player->pos.y * ctx->tilesize);
-	c.radius = (ctx->tilesize * 3 + 4) / 8;
+	c.radius = (ctx->tilesize * PLAYER_SIZE);
 	draw_circle(ctx->img, &c, COLOR_RED);
 }
 
-static void	draw(void *param)
+void	cub3d_fill_image(mlx_image_t *img, uint32_t color)
 {
-	t_ctx	*ctx;
-	static int	x = 0;
+	uint32_t	x;
+	uint32_t	y;
 
-	if (x == 0)
-	{
-		x = 1;
+	if (img == NULL)
 		return ;
+	y = 0;
+	while (y < img->height)
+	{
+		x = 0;
+		while (x < img->width)
+		{
+			mlx_put_pixel(img, x, y, color);
+			x++;
+		}
+		y++;
 	}
-	ctx = (t_ctx *)param;
-	draw_map(ctx);
-	draw_player(ctx);
 }
 
+static void	cub3d_draw_scene(void *param)
+{
+	t_ctx	*ctx;
+
+	ctx = (t_ctx *)param;
+	cub3d_fill_image(ctx->img, COLOR_BLACK);
+	cub3d_draw_map(ctx);
+	cub3d_draw_player(ctx);
+}
 int run_app(t_ctx *ctx)
 {
-	t_rectangle	r;
-
     if (ctx == NULL)
         return (0);
     ctx->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MINIMAP", false);
     if (ctx->mlx == NULL)
         return (ft_dprintf(2,"Error\nUnable to create window\n"), 0);
     ctx->img = mlx_new_image(ctx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	r.pos.x = 0;
-	r.pos.y = 0;
-	r.width = WINDOW_WIDTH;
-	r.height = WINDOW_HEIGHT;
-	draw_rectangle(ctx->img, &r, COLOR_BLACK);
     if (ctx->img == NULL
         || (mlx_image_to_window(ctx->mlx, ctx->img, 0, 0) < 0))
 	{
@@ -104,7 +98,8 @@ int run_app(t_ctx *ctx)
 		mlx_terminate(ctx->mlx);
 		return (0);
 	}
-	mlx_loop_hook(ctx->mlx, draw, ctx);
+	mlx_loop_hook(ctx->mlx, cub3d_draw_scene, ctx);
+	mlx_key_hook(ctx->mlx, cub3d_key_callback, ctx);
 	mlx_loop(ctx->mlx);
 	mlx_terminate(ctx->mlx);
     return (1);
