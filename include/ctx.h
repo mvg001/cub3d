@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 11:38:50 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/11 12:55:11 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/12 15:49:10 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ typedef struct	s_ctx
 {
 	t_map		*map;
 	t_player 	*player;
-	uint32_t	tilesize;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+	uint32_t	tilesize;
+	double		player_rotation[4];
+	double		player_fast_rotation[4];
 }	t_ctx;
 
 t_ctx	*ctx_create(char *filename);

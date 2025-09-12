@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 19:53:56 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/12 12:29:48 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/12 15:34:39 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define COLOR_BLACK	0x000000ff
 # define COLOR_RED		0xff0000ff
 
-# define PLAYER_SIZE			0.3
+# define PLAYER_SIZE			0.4
 # define PLAYER_STEP			0.25		// plane
 # define PLAYER_FAST_STEP		0.75		// plane
 # define PLAYER_ROTATION		2			// degrees

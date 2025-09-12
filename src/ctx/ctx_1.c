@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 11:40:55 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/11 16:04:29 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/12 15:50:37 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "map.h"
 #include "player.h"
+#include "vec2d.h"
 #include <stdint.h>
 
 static int	add_map_player(t_ctx *ctx, char *filename)
@@ -58,6 +59,8 @@ t_ctx	*ctx_create(char *filename)
 	if (!add_map_player(ctx, filename))
 		return (ctx_destroy(&ctx), NULL);
 	ctx->tilesize = calculate_tilesize(ctx->map, WINDOW_WIDTH, WINDOW_HEIGHT);
+	vec2d_gen_rotation_degree(ctx->player_rotation, PLAYER_ROTATION);
+	vec2d_gen_rotation_degree(ctx->player_fast_rotation, PLAYER_FAST_ROTATION);
 	return (ctx);
 }
 

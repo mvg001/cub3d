@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 12:48:18 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/12 12:11:00 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/12 15:36:38 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,22 @@ static void	cub3d_draw_map(t_ctx	*ctx)
 static void	cub3d_draw_player(t_ctx *ctx)
 {
 	t_circle	c;
-
+	t_point		p[3];
+	
 	c.center.x = (ctx->player->pos.x * ctx->tilesize);
 	c.center.y = (ctx->player->pos.y * ctx->tilesize);
 	c.radius = (ctx->tilesize * PLAYER_SIZE);
 	draw_circle(ctx->img, &c, COLOR_RED);
+	c.radius = (c.radius * 3 + 2) / 4;
+	p[0].x = c.center.x + ctx->player->dir.x * c.radius;
+	p[0].y = c.center.y + ctx->player->dir.y * c.radius;
+	p[1].x = c.center.x - ctx->player->dir.y * c.radius;
+	p[1].y = c.center.y + ctx->player->dir.x * c.radius;
+	p[2].x = c.center.x + ctx->player->dir.y * c.radius;
+	p[2].y = c.center.y - ctx->player->dir.x * c.radius;
+	draw_line(ctx->img, p, p+1, COLOR_BLACK);
+	draw_line(ctx->img, p, p+2, COLOR_BLACK);
+	draw_line(ctx->img, p+1, p+2, COLOR_BLACK);
 }
 
 void	cub3d_fill_image(mlx_image_t *img, uint32_t color)

@@ -6,31 +6,28 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 11:34:53 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/10 12:24:54 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/12 15:47:35 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 #include "vec2d.h"
 #include "math.h"
 
-t_rotation	vec2d_gen_rotation(double angle_rad)
+int	vec2d_gen_rotation(t_rotation m, double angle_rad)
 {
-    double *m;
-
-    m = ft_calloc(4, sizeof(double));
     if (m == NULL)
-        return (NULL);
+        return (0);
     m[0] = cos(angle_rad);
     m[2] = sin(angle_rad);
     m[1] = -m[2];
     m[3] = m[0];
-    return (m);
+    return (1);
 }
 
-t_rotation	vec2d_gen_rotation_degree(double angle_degrees)
+int	vec2d_gen_rotation_degree(t_rotation m, double angle_degrees)
 {
-    return (vec2d_gen_rotation(angle_degrees * M_PI / 180.0));
+    return (vec2d_gen_rotation(m, angle_degrees * M_PI / 180.0));
 }
 
 int		vec2d_rotate(t_vec2d *v, t_rotation r)

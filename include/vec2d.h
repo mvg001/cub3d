@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:42:03 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/10 12:34:01 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/12 15:47:14 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	vec2d_destroy(t_vec2d **v);
 double	vec2d_length(t_vec2d *v);
 void	vec2d_normalize(t_vec2d *v);
 double	vec2d_distance(t_vec2d *a, t_vec2d *b);
-double	*vec2d_gen_rotation(double angle_rad);
-double	*vec2d_gen_rotation_degree(double angle_degrees);
+int		vec2d_gen_rotation(t_rotation m, double angle_rad);
+int		vec2d_gen_rotation_degree(t_rotation m, double angle_degrees);
 int		vec2d_rotate(t_vec2d *v, t_rotation r);
 #endif
