@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:13:58 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/09 14:44:23 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/15 15:44:51 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,29 @@ int	map_is_map_line(char *line)
     return (0);
 }
 
+void	map_print_plane(t_map *map)
+{
+	int	i;
+
+	if (map == NULL)
+		return ;
+    if (map->plane == NULL)
+	{
+        ft_putendl_fd("plane: empty", 2);
+		return ;
+	}
+    i = -1;
+    ft_dprintf(2, "plane:\n");
+//    while (map->plane[++i] != NULL)
+	while (++i < map->n_lines)
+        if (i < 10)
+            ft_dprintf(2, " %d: '%s'\n", i, map->plane[i]);
+        else
+            ft_dprintf(2, "%d: '%s'\n", i, map->plane[i]);
+}
+
 int	map_print(t_map *map)
 {
-    int	i;
-
     if (map == NULL)
         return (0);
     ft_putendl_fd("\n### MAP:", 2);
@@ -70,15 +89,7 @@ int	map_print(t_map *map)
     ft_dprintf(2, "player_init_x: %d\n", map->player_init_x);
     ft_dprintf(2, "player_init_y: %d\n", map->player_init_y);
     ft_dprintf(2, "player_init_dir: %c\n", map->player_init_dir);
-    if (map->plane == NULL)
-        return (ft_putendl_fd("plane: empty", 2), 0);
-    i = -1;
-    ft_dprintf(2, "plane:\n");
-    while (map->plane[++i] != NULL)
-        if (i < 10)
-            ft_dprintf(2, " %d: '%s'\n", i, map->plane[i]);
-        else
-            ft_dprintf(2, "%d: '%s'\n", i, map->plane[i]);
+	map_print_plane(map);
     return (1);
 }
 
@@ -99,21 +110,4 @@ int	map_is_texture_ok(char *filename)
     return (1);
 }
 
-int	map_largest_line(char **lines)
-{
-    int i;
-    int len;
-    int llen;
 
-    if (lines == NULL)
-        return (-1);
-    i = -1;
-    llen = 0;
-    while (lines[++i] != NULL)
-    {
-        len = ft_strlen(lines[i]);
-        if (len > llen)
-            llen = len;
-    }
-    return (llen);
-}

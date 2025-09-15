@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:15:08 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/09 15:00:24 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/15 15:24:07 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_map	*map_check(t_map *map)
 		return (NULL);
 	if (!map_walls_check(map))
 		return (NULL);
+	map_trim(map);
 	return (map);
 }
 
@@ -86,4 +87,21 @@ int	map_walls_check(t_map *map)
 	return (1);
 }
 
+int	map_largest_line(char **lines)
+{
+    int i;
+    int len;
+    int llen;
 
+    if (lines == NULL)
+        return (-1);
+    i = -1;
+    llen = 0;
+    while (lines[++i] != NULL)
+    {
+        len = ft_strlen(lines[i]);
+        if (len > llen)
+            llen = len;
+    }
+    return (llen);
+}

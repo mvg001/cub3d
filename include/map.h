@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/10 09:58:19 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/15 15:39:04 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_parser
 t_map	*map_create();
 void	map_destroy(t_map **map);
 int		map_print(t_map *map);
+void	map_print_plane(t_map *map);
 t_map	*map_read(char *filename);
 int		map_is_cell_wall_d(t_map *map, double x, double y);
 int		map_is_cell_wall(t_map *map, t_vec2d *pos);
@@ -85,4 +86,5 @@ t_map	*map_check(t_map *map);
 int		map_check_size(t_map *map);
 int		map_set_player(t_map *map);
 int		map_walls_check(t_map *map);
+int		map_trim(t_map *map);
 #endif
