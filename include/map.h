@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/15 15:39:04 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/16 10:29:16 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ int		map_check_size(t_map *map);
 int		map_set_player(t_map *map);
 int		map_walls_check(t_map *map);
 int		map_trim(t_map *map);
+void	map_normalize(t_map *map);
 #endif

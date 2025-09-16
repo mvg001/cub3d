@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 12:39:08 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/10 10:47:52 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/16 12:03:30 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,19 @@ int	map_get_cell(t_map *map, t_vec2d *pos)
 
 int	map_is_cell_wall_d(t_map *map, double x, double y)
 {
+	char	c;
+
 	if (map == NULL)
-		return (-1);
-	return (map_get_cell_d(map, x, y) != EMPTY_CHAR);
+		return (1);
+	c = map_get_cell_d(map, x, y);
+	if (c < 0)
+		return (1);
+	return (c == WALL_CHAR);
 }
 
 int	map_is_cell_wall(t_map *map, t_vec2d *pos)
 {
 	if (map == NULL || pos == NULL)
-		return (-1);
+		return (1);
     return (map_is_cell_wall_d(map, pos->x, pos->y));
 }

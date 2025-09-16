@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:15:08 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/15 15:24:07 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/16 10:30:07 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_map	*map_check(t_map *map)
 	if (!map_walls_check(map))
 		return (NULL);
 	map_trim(map);
+	map_normalize(map);
 	return (map);
 }
 

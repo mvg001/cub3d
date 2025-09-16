@@ -6,23 +6,31 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:33:10 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/12 16:15:43 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/16 14:49:54 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/MLX42.h"
 #include "ctx.h"
 #include "cub3d.h"
+#include "map.h"
 #include "player.h"
 #include "vec2d.h"
 
-static void move(t_player *player, double dx, double dy)
+static void move(t_ctx *ctx, double dx, double dy)
 {
-	player->pos.x += dx;
-	player->pos.y += dy;
+	double	nx;
+	double	ny;
+
+	nx = ctx->player->pos.x + dx;
+	ny = ctx->player->pos.y + dy;
+	if (map_is_cell_wall_d(ctx->map, nx, ny))
+		return ;
+	ctx->player->pos.x += dx;
+	ctx->player->pos.y += dy;
 }
 
-static void	rotation(t_ctx *ctx, mlx_key_data_t kdata)
+static void	rotate(t_ctx *ctx, mlx_key_data_t kdata)
 {
 	double	*rot_ref;
 	double	rotation[4];
@@ -57,15 +65,15 @@ void	cub3d_key_callback(mlx_key_data_t kdata, void *param)
 	if (kdata.modifier == MLX_SHIFT)
 		step = PLAYER_FAST_STEP;
 	if (kdata.key == MLX_KEY_W)
-		move(player, player->dir.x * step, player->dir.y * step);
+		move(ctx, player->dir.x * step, player->dir.y * step);
 	else if (kdata.key == MLX_KEY_A)
-		move(player, player->dir.y * step, - player->dir.x * step);
+		move(ctx, player->dir.y * step, - player->dir.x * step);
 	else if (kdata.key == MLX_KEY_S)
-		move(player, - player->dir.x * step,  - player->dir.y * step);
+		move(ctx, - player->dir.x * step,  - player->dir.y * step);
 	else if (kdata.key == MLX_KEY_D)
-		move(player, - player->dir.y * step, player->dir.x * step);
+		move(ctx, - player->dir.y * step, player->dir.x * step);
 	else if (kdata.key == MLX_KEY_ESCAPE)
 		mlx_close_window(ctx->mlx);
 	else
-		rotation(ctx, kdata);
+		rotate(ctx, kdata);
 }

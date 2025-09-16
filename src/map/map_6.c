@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 12:47:30 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/15 16:30:12 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/16 10:35:52 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static void	map_trim_columns(t_map *map, int min_x, int max_x)
 		free(map->plane[i]);
 		map->plane[i] = p;
 	}
+	map->n_columns = max_x - min_x + 3;
 }
 
 int	map_trim(t_map *map)
@@ -91,5 +92,24 @@ int	map_trim(t_map *map)
 		map_trim_lines(map, limits[0], limits[1]);
 	if (limits[2] > 1 || limits[3] < map->n_columns - 2)
 		map_trim_columns(map, limits[2], limits[3]);
+	map->player_init_x -= (limits[2] - 1);
+	map->player_init_y -= (limits[0] - 1);
 	return (1);
+}
+
+void	map_normalize(t_map *map)
+{
+	int	i;
+	int	j;
+
+	if (map == NULL)
+		return ;
+	i = -1;
+	while (++i < map->n_lines)
+	{
+		j = -1;
+		while (++j < map->n_columns)
+			if (map->plane[i][j] != EMPTY_CHAR)
+				map->plane[i][j] = WALL_CHAR;
+	}
 }

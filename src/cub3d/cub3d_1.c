@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 12:48:18 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/12 15:36:38 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/16 12:28:04 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "map.h"
 #include <stdint.h>
 
-static void	cub3d_draw_map(t_ctx	*ctx)
+static void	cub3d_draw_map(t_ctx *ctx)
 {
 	t_rectangle	r;
 	int			i;
