@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user1 <user1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 10:42:53 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/16 16:39:46 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/18 22:21:45 by user1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,6 @@ typedef struct	s_ray
 }	t_ray;
 
 t_ray	*ray_casting(t_player *player, double tg_fovh, t_map *map, int n_rays);
+double	ray_horizontals(t_ray *ray, t_player *player, t_map *map);
+double	ray_verticals(t_ray *ray, t_player *player, t_map *map);
 #endif

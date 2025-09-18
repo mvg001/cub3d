@@ -3,55 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ray_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user1 <user1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 14:58:02 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/16 17:43:36 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/18 23:33:56 by user1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <float.h>
 #include "libft.h"
 #include "map.h"
 #include "player.h"
 #include "ray.h"
 #include "vec2d.h"
-#include <float.h>
-#include <math.h>
 
-static double	ray_horizontal(t_ray *ray, t_player *player, t_map *map)
+static void	ray_calculate(t_ray *ray, t_player *player, t_map *map)
 {
-	double	t0;
+	double	tmin;
 	double	t;
-	int		i;
-	int		inc;
-	t_vec2d	h;
-
-	inc = 1;
-	if (ray->rdir.y < 0.0)
-		inc = -1;
-	i = 0;
-	t0 = (floor(player->pos.y) - player->pos.y) / ray->rdir.y;
-	h.x = player->pos.x + ray->rdir.x * t0;
-	h.y = player->pos.y + ray->rdir.y * t0;
-	while (map_is_cell_wall(map, &h))
-	{
-		i += inc;
-		t = t0 + (double)i / 
-	}
+	t_ray	r;
 	
-}
-
-static int	ray_calculate(t_ray *ray, t_player *player, t_map *map)
-{
-	double	th;
-	double	tv;
-
-	th = DBL_MAX;
+	tmin = DBL_MAX;
 	if (ray->rdir.y != 0.0)
-		th = ray_horizontal(ray, player, map);
-	tv = DBL_MAX;
-	
-	return (1);
+	{
+		r = *ray;
+		t = ray_horizontals(&r, player, map);
+		if (t < tmin)
+		{
+			*ray = r;
+			tmin = t;
+		}
+	}
+	if (ray->rdir.x != 0.0)
+	{
+		r = *ray;
+		t = ray_verticals(&r, player, map);
+		if (t < tmin)
+		{
+			*ray = r;
+			tmin = t;
+		}
+	}
 }
 
 t_ray	*ray_casting(t_player *player, double tg_fovh, t_map *map, int n_rays)
