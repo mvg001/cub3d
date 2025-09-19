@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user1 <user1@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 14:58:02 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/18 23:33:56 by user1            ###   ########.fr       */
+/*   Updated: 2025/09/19 11:29:13 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,36 @@
 #include "ray.h"
 #include "vec2d.h"
 
+static void	get_hv_rays(t_ray *rh, t_ray *rv, t_player *player, t_map *map)
+{
+	rh->len = DBL_MAX;
+	if (rh->rdir.y != 0.0)
+		ray_horizontals(rh, player, map);
+	rv->len = DBL_MAX;
+	if (rv->rdir.x != 0.0)
+		ray_verticals(rv, player, map);
+}
+
 static void	ray_calculate(t_ray *ray, t_player *player, t_map *map)
 {
-	double	tmin;
-	double	t;
-	t_ray	r;
-	
-	tmin = DBL_MAX;
-	if (ray->rdir.y != 0.0)
+	t_ray	rh;
+	t_ray	rv;
+
+	rh = *ray;
+	rv = *ray;
+	get_hv_rays(&rh, &rv, player, map);
+	if (rh.len < rv.len)
 	{
-		r = *ray;
-		t = ray_horizontals(&r, player, map);
-		if (t < tmin)
-		{
-			*ray = r;
-			tmin = t;
-		}
+		*ray = rh;
+		ray->face = FACE_NORTH;
+		if (ray->rdir.y > 0.0)
+			ray->face = FACE_SOUTH;
+		return ;
 	}
-	if (ray->rdir.x != 0.0)
-	{
-		r = *ray;
-		t = ray_verticals(&r, player, map);
-		if (t < tmin)
-		{
-			*ray = r;
-			tmin = t;
-		}
-	}
+	*ray = rv;
+	ray->face = FACE_WEST;
+	if (ray->rdir.x > 0.0)
+		ray->face = FACE_EAST;
 }
 
 t_ray	*ray_casting(t_player *player, double tg_fovh, t_map *map, int n_rays)

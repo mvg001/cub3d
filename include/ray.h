@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user1 <user1@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 10:42:53 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/18 22:21:45 by user1            ###   ########.fr       */
+/*   Updated: 2025/09/19 11:15:16 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,19 @@
 #include "map.h"
 #include "player.h"
 
+typedef enum	s_face
+{
+	FACE_NORTH,
+	FACE_SOUTH,
+	FACE_EAST,
+	FACE_WEST,
+}	t_face;
+
 typedef struct	s_ray
 {
 	t_vec2d	rdir;
 	t_vec2d	colision;
+	t_face	face;
 	double	len;
 	double	p_len;
 }	t_ray;
