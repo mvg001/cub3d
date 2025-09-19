@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:33:10 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 12:14:49 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 14:10:53 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,3 @@ void	cub3d_key_callback(mlx_key_data_t kdata, void *param)
 	else
 		rotate(ctx, kdata);
 }
-

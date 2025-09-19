@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_color_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:38:53 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/07 14:05:00 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 14:24:48 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static int	update_color(char **words, t_map *map)
     }
     n = (color[0] << 16) | (color[1] << 8) | color[2];
     if (words[0][0] == 'C')
-        map->ceiling_color = n;
+        map->ceiling_color = (n << 8) | 0xff;
     else if (words[0][0] == 'F')
-        map->floor_color = n;
+        map->floor_color = (n << 8) | 0xff;
     else
         return (0);
     return (1);

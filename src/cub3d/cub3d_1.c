@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 12:48:18 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 12:41:40 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 16:52:38 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	cub3d_draw_player(t_ctx *ctx)
 	draw_line(ctx->img, p+1, p+2, COLOR_BLACK);
 }
 
-static void	cub3d_draw_scene(void *param)
+void	cub3d_draw_minimap(void *param)
 {
 	t_ctx	*ctx;
 
@@ -111,7 +111,8 @@ int run_app(t_ctx *ctx)
 		mlx_terminate(ctx->mlx);
 		return (0);
 	}
-	mlx_loop_hook(ctx->mlx, cub3d_draw_scene, ctx);
+	//mlx_loop_hook(ctx->mlx, cub3d_draw_minimap, ctx);
+	mlx_loop_hook(ctx->mlx, cub3d_display_3d, ctx);
 	mlx_key_hook(ctx->mlx, cub3d_key_callback, ctx);
 	mlx_loop(ctx->mlx);
 	mlx_terminate(ctx->mlx);

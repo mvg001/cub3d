@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user1 <user1@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 22:22:39 by user1             #+#    #+#             */
-/*   Updated: 2025/09/18 23:57:43 by user1            ###   ########.fr       */
+/*   Updated: 2025/09/19 15:35:23 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	ray_verticals_n(t_ray *ray, t_player *player, t_map *map)
 double	ray_verticals(t_ray *ray, t_player *player, t_map *map)
 {
 	if ((ray->rdir.x > 0.0 && ray_verticals_p(ray, player, map))
-		||(ray->rdir.x < 0.0 && ray_verticals_n(ray, player, map)))
+		|| (ray->rdir.x < 0.0 && ray_verticals_n(ray, player, map)))
 	{
 		ray->p_len = ray->len * 
 			(ray->rdir.x * player->dir.x + ray->rdir.y * player->dir.y);

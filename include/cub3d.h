@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 19:53:56 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 13:01:29 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 14:18:09 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define RAY_COLOR		0xffff00ff
 # define COLOR_BLACK	0x000000ff
 # define COLOR_RED		0xff0000ff
+# define COLOR_GRAY		0x808080ff
 
 # define PLAYER_SIZE			0.2
 # define PLAYER_STEP			0.2		// plane
@@ -31,4 +32,5 @@
 
 int		run_app(t_ctx *ctx);
 void	cub3d_key_callback(mlx_key_data_t keydata, void *param);
+void	cub3d_display_3d(void *param);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 10:42:53 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 12:24:13 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 14:37:39 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef enum	s_face
 {
-	FACE_NORTH,
+	FACE_NORTH = 0,
 	FACE_SOUTH,
 	FACE_EAST,
 	FACE_WEST,
