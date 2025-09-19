@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 14:51:55 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/11 19:16:10 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 11:56:21 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ int			draw_rectangle(mlx_image_t *img, t_rectangle *rect, uint32_t color);
 int 		draw_circumference(mlx_image_t *img, t_circle *cf,
 	uint32_t color);
 int 		draw_circle(mlx_image_t *img, t_circle *cf, uint32_t color);
+void		draw_fill_image(mlx_image_t *img, uint32_t color);
 #endif

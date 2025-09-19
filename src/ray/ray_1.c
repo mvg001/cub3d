@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 14:58:02 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 11:29:13 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:26:22 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,20 @@ static void	ray_calculate(t_ray *ray, t_player *player, t_map *map)
 		ray->face = FACE_EAST;
 }
 
-t_ray	*ray_casting(t_player *player, double tg_fovh, t_map *map, int n_rays)
+t_ray	*ray_casting(t_player *player, t_map *map, int n_rays)
 {
 	t_ray	*rays;
 	t_vec2d	pdir;
 	int		i;
 	double	f;
 
-	if (player == NULL || map == NULL || tg_fovh <= 0 || n_rays <= 0)
+	if (player == NULL || map == NULL || n_rays <= 0)
 		return (NULL);
 	rays = ft_calloc(n_rays, sizeof(t_ray));
 	if (rays == NULL)
 		return (NULL);
-	pdir.x = -player->dir.y * tg_fovh;
-	pdir.y = player->dir.x * tg_fovh;
+	pdir.x = -player->dir.y * player->tg_half_fov;
+	pdir.y = player->dir.x * player->tg_half_fov;
 	i = -1;
 	while (++i < n_rays)
 	{

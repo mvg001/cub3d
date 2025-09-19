@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 19:53:56 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/16 14:45:18 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 13:01:29 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # define FOV			66		// degrees
 # define WINDOW_WIDTH	1024	// pixels
 # define WINDOW_HEIGHT	768		// pixels
+# define N_RAYS			9
 # define TILE_COLOR     0x808080ff
+# define RAY_COLOR		0xffff00ff
 # define COLOR_BLACK	0x000000ff
 # define COLOR_RED		0xff0000ff
 

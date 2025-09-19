@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 12:48:18 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/16 12:28:04 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:41:40 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "libft.h"
 #include "draw.h"
 #include "map.h"
+#include "ray.h"
 #include <stdint.h>
 
 static void	cub3d_draw_map(t_ctx *ctx)
@@ -44,6 +45,26 @@ static void	cub3d_draw_map(t_ctx *ctx)
 	return ;
 }
 
+static void	cub3d_draw_rays(t_ctx *ctx, t_point	*player_position)
+{
+	uint32_t		i;
+	t_ray		*rays;
+	t_point		pcolision;
+
+	rays = ray_casting(ctx->player, ctx->map, N_RAYS);
+	if (rays == NULL)
+		return ;
+	i = 0;
+	while (i < N_RAYS)
+	{
+		pcolision.x = ctx->tilesize * rays[i].colision.x;
+		pcolision.y = ctx->tilesize * rays[i].colision.y;
+		draw_line(ctx->img, player_position, &pcolision, RAY_COLOR);
+		i++;
+	}
+	free(rays);
+}
+
 static void	cub3d_draw_player(t_ctx *ctx)
 {
 	t_circle	c;
@@ -52,6 +73,7 @@ static void	cub3d_draw_player(t_ctx *ctx)
 	c.center.x = (ctx->player->pos.x * ctx->tilesize);
 	c.center.y = (ctx->player->pos.y * ctx->tilesize);
 	c.radius = (ctx->tilesize * PLAYER_SIZE);
+	cub3d_draw_rays(ctx, &c.center);
 	draw_circle(ctx->img, &c, COLOR_RED);
 	c.radius = (c.radius * 3 + 2) / 4;
 	p[0].x = c.center.x + ctx->player->dir.x * c.radius;
@@ -65,32 +87,12 @@ static void	cub3d_draw_player(t_ctx *ctx)
 	draw_line(ctx->img, p+1, p+2, COLOR_BLACK);
 }
 
-void	cub3d_fill_image(mlx_image_t *img, uint32_t color)
-{
-	uint32_t	x;
-	uint32_t	y;
-
-	if (img == NULL)
-		return ;
-	y = 0;
-	while (y < img->height)
-	{
-		x = 0;
-		while (x < img->width)
-		{
-			mlx_put_pixel(img, x, y, color);
-			x++;
-		}
-		y++;
-	}
-}
-
 static void	cub3d_draw_scene(void *param)
 {
 	t_ctx	*ctx;
 
 	ctx = (t_ctx *)param;
-	cub3d_fill_image(ctx->img, COLOR_BLACK);
+	draw_fill_image(ctx->img, COLOR_BLACK);
 	cub3d_draw_map(ctx);
 	cub3d_draw_player(ctx);
 }

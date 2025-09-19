@@ -6,14 +6,14 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 11:38:50 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/12 15:49:10 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:37:42 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CTX_H
 # define CTX_H
 
-#include <stdint.h>
+# include <stdint.h>
 # include "player.h"
 # include "map.h"
 # include "MLX42/MLX42.h"

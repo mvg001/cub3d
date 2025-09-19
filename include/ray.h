@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 10:42:53 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 11:15:16 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:24:13 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct	s_ray
 	double	p_len;
 }	t_ray;
 
-t_ray	*ray_casting(t_player *player, double tg_fovh, t_map *map, int n_rays);
+t_ray	*ray_casting(t_player *player, t_map *map, int n_rays);
 double	ray_horizontals(t_ray *ray, t_player *player, t_map *map);
 double	ray_verticals(t_ray *ray, t_player *player, t_map *map);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvassall <mvassall@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 15:07:20 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/11 19:03:41 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/19 11:55:58 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,22 @@ int	draw_rectangle(mlx_image_t *img, t_rectangle *rect, uint32_t color)
 	return (1);
 }
 
+void	draw_fill_image(mlx_image_t *img, uint32_t color)
+{
+	uint32_t	x;
+	uint32_t	y;
 
+	if (img == NULL)
+		return ;
+	y = 0;
+	while (y < img->height)
+	{
+		x = 0;
+		while (x < img->width)
+		{
+			mlx_put_pixel(img, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
