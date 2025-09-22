@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 11:40:55 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/22 11:58:34 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/22 15:37:49 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cub3d.h"
 #include "libft.h"
 #include "map.h"
+#include "minimap.h"
 #include "player.h"
 #include "vec2d.h"
 #include <stdint.h>
@@ -33,20 +34,6 @@ static int	add_map_player(t_ctx *ctx, char *filename)
 	return (1);
 }
 
-static uint32_t	calculate_tilesize(t_map *m, uint32_t width, uint32_t height)
-{
-	uint32_t	tx;
-	uint32_t	ty;
-
-	if (m == NULL)
-		return (0);
-	tx = width / m->n_columns;
-	ty = height / m->n_lines;
-	if (tx < ty)
-		return (tx);
-	return (ty);
-}
-
 t_ctx	*ctx_create(char *filename)
 {
 	t_ctx		*ctx;
@@ -58,7 +45,7 @@ t_ctx	*ctx_create(char *filename)
 		return (NULL);
 	if (!add_map_player(ctx, filename))
 		return (ctx_destroy(&ctx), NULL);
-	ctx->tilesize = calculate_tilesize(ctx->map, WINDOW_WIDTH, WINDOW_HEIGHT);
+	minimap_calculate(ctx);
 	vec2d_gen_rotation_degree(ctx->player_rotation, PLAYER_ROTATION);
 	vec2d_gen_rotation_degree(ctx->player_fast_rotation, PLAYER_FAST_ROTATION);
 	ctx->redraw = true;

@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
+/*   player_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/29 17:23:51 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/22 16:21:08 by mvassall         ###   ########.fr       */
+/*   Created: 2025/09/22 15:42:52 by mvassall          #+#    #+#             */
+/*   Updated: 2025/09/22 16:20:57 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
-# include "vec2d.h"
+#include "player.h"
+#include "ctx.h"
 #include <stdbool.h>
 
-typedef struct s_player
+bool player_move(t_ctx *ctx, double dx, double dy)
 {
-	t_vec2d	pos;
-	t_vec2d	dir;
-	double	tg_half_fov;
-}	t_player;
+	double	nx;
+	double	ny;
 
-typedef struct s_ctx	t_ctx;
-t_player	*player_create(double posx, double posy, double dirx, double diry);
-t_player	*player_create_char_dir(double xpos, double ypos, char cdir);
-void	    player_destroy(t_player **player);
-bool		player_move(t_ctx *ctx, double dx, double dy);
-#endif
+	nx = ctx->player->pos.x + dx;
+	ny = ctx->player->pos.y + dy;
+	if (map_is_cell_wall_d(ctx->map, nx, ny))
+		return (false);
+	ctx->player->pos.x += dx;
+	ctx->player->pos.y += dy;
+	ctx->redraw = true;
+	return (true);
+}
+

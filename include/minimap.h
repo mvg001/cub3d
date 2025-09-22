@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ctx.h                                              :+:      :+:    :+:   */
+/*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/11 11:38:50 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/22 15:12:02 by mvassall         ###   ########.fr       */
+/*   Created: 2025/09/22 14:51:48 by mvassall          #+#    #+#             */
+/*   Updated: 2025/09/22 16:36:47 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CTX_H
-# define CTX_H
+#ifndef MINIMAP_H
+# define MINIMAP_H
+#include <stdbool.h>
 
-# include <stdbool.h>
-# include <stdint.h>
-#include "minimap.h"
-# include "player.h"
-# include "map.h"
-# include "MLX42/MLX42.h"
+# define MINIMAP_TILE_COLOR     0x808080ff
+# define MINIMAP_RAY_COLOR		0xffff00ff
+# define MINIMAP_N_RAYS			7
+# define MINIMAP_SCALE			0.2
+# define MINIMAP_MIN_TILESIZE	4
 
-typedef struct	s_ctx
+typedef struct s_minimap
 {
-	t_map		*map;
-	t_player 	*player;
-	t_minimap	mmap;
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	bool		redraw;
-	double		player_rotation[4];
-	double		player_fast_rotation[4];
-}	t_ctx;
+	int		tile_size;
+	bool	draw;
+}	t_minimap;
 
-t_ctx	*ctx_create(char *filename);
-int		ctx_destroy(t_ctx **ctx);
+typedef struct s_ctx	t_ctx;
+
+void	minimap_draw(t_ctx *ctx);
+void	minimap_calculate(t_ctx *ctx);
 #endif

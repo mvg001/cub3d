@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:10:28 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/22 12:07:20 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/22 16:35:10 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cub3d.h"
 #include "draw.h"
 #include "map.h"
+#include "minimap.h"
 #include "ray.h"
 #include <stdint.h>
 #include <stdlib.h>
@@ -80,5 +81,7 @@ void	cub3d_display_3d(void *param)
 			i++;
 		}
 		free(rays);
+		if (ctx->mmap.draw)
+			minimap_draw(ctx);
 	}
 }
