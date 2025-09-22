@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:10:28 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 16:59:02 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/22 12:07:20 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	cub3d_draw_floor_ceiling(t_ctx *ctx)
 	draw_rectangle(ctx->img, &r, ctx->map->floor_color);
 	p.x = ctx->img->width - 1;
 	p.y = r.pos.y;
-	draw_line(ctx->img, &r.pos, &p, COLOR_GRAY);
 }
 
 static void	cub3d_draw_ray(t_ray *rays, uint32_t col, t_ctx *ctx, uint32_t color)
@@ -63,6 +62,9 @@ void	cub3d_display_3d(void *param)
 	uint32_t	color[4];
 
 	ctx = (t_ctx *)param;
+	cub3d_print_fps(ctx->mlx);
+	if (!ctx->redraw)
+		return ;
 	color[FACE_NORTH] = 0xff0000ff;
 	color[FACE_SOUTH] = 0x00ff00ff;
 	color[FACE_EAST]  = 0x0000ffff;

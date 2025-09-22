@@ -6,17 +6,20 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:33:10 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 14:10:53 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/22 12:28:18 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/MLX42.h"
 #include "ctx.h"
 #include "cub3d.h"
-#include "draw.h"
+#include "libft.h"
 #include "map.h"
 #include "player.h"
 #include "vec2d.h"
+#include <math.h>
+#include <stdbool.h>
+#include <stdio.h>
 
 static void move(t_ctx *ctx, double dx, double dy)
 {
@@ -29,17 +32,18 @@ static void move(t_ctx *ctx, double dx, double dy)
 		return ;
 	ctx->player->pos.x += dx;
 	ctx->player->pos.y += dy;
+	ctx->redraw = true;
 }
 
-static void	rotate(t_ctx *ctx, mlx_key_data_t kdata)
+static void	rotate(t_ctx *ctx, mlx_key_data_t *pkdata)
 {
 	double	*rot_ref;
 	double	rotation[4];
 
 	rot_ref = ctx->player_rotation;
-	if (kdata.modifier == MLX_SHIFT)
+	if (pkdata->modifier == MLX_SHIFT)
 		rot_ref = ctx->player_fast_rotation;
-	if (kdata.key == MLX_KEY_LEFT)
+	if (pkdata->key == MLX_KEY_LEFT)
 	{
 		rotation[0] = rot_ref[0];
 		rotation[1] = rot_ref[2];
@@ -47,9 +51,10 @@ static void	rotate(t_ctx *ctx, mlx_key_data_t kdata)
 		rotation[3] = rot_ref[3];
 		rot_ref = rotation;
 	}
-	else if (kdata.key != MLX_KEY_RIGHT)
+	else if (pkdata->key != MLX_KEY_RIGHT)
 		return ;
 	vec2d_rotate(&ctx->player->dir, rot_ref);
+	ctx->redraw = true;
 }	
 
 void	cub3d_key_callback(mlx_key_data_t kdata, void *param)
@@ -60,6 +65,7 @@ void	cub3d_key_callback(mlx_key_data_t kdata, void *param)
 	
 	ctx = (t_ctx *)param;
 	player = (t_player *)ctx->player;
+	ctx->redraw = false;
 	if (kdata.action != MLX_PRESS && kdata.action != MLX_REPEAT)
 		return ;
 	step = PLAYER_STEP;
@@ -76,5 +82,25 @@ void	cub3d_key_callback(mlx_key_data_t kdata, void *param)
 	else if (kdata.key == MLX_KEY_ESCAPE)
 		mlx_close_window(ctx->mlx);
 	else
-		rotate(ctx, kdata);
+		rotate(ctx, &kdata);
+}
+
+void	cub3d_print_fps(mlx_t *mlx)
+{
+	static t_fps_stats	stats;
+	int	fps;
+	int	i;
+
+	if (mlx == NULL)
+		return ;
+	fps = round(1.0 / mlx->delta_time);
+	stats.samples[stats.n] = fps;
+	stats.n = (stats.n + 1) % FPS_STATS_N_SAMPLES;
+	if (stats.n > 0)
+		return ;
+	i = -1;
+	fps = 0;
+	while (++i < FPS_STATS_N_SAMPLES)
+		fps += stats.samples[i];
+	fprintf(stderr, "\r fps: %d  ", fps / FPS_STATS_N_SAMPLES);
 }

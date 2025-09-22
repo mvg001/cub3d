@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 19:53:56 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 14:18:09 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/22 12:19:58 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,15 @@
 # define PLAYER_ROTATION		2		// degrees
 # define PLAYER_FAST_ROTATION	5		// degrees
 
+# define FPS_STATS_N_SAMPLES	60
+typedef struct	s_fps_stats
+{
+	int	samples[FPS_STATS_N_SAMPLES];
+	int	n;
+}	t_fps_stats;
+
 int		run_app(t_ctx *ctx);
 void	cub3d_key_callback(mlx_key_data_t keydata, void *param);
 void	cub3d_display_3d(void *param);
+void	cub3d_print_fps(mlx_t *mlx);
 #endif

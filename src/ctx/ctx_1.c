@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 11:40:55 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 12:37:50 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/22 11:58:34 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_ctx	*ctx_create(char *filename)
 	ctx->tilesize = calculate_tilesize(ctx->map, WINDOW_WIDTH, WINDOW_HEIGHT);
 	vec2d_gen_rotation_degree(ctx->player_rotation, PLAYER_ROTATION);
 	vec2d_gen_rotation_degree(ctx->player_fast_rotation, PLAYER_FAST_ROTATION);
+	ctx->redraw = true;
 	return (ctx);
 }
 

@@ -6,13 +6,14 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 11:38:50 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 12:37:42 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/22 11:48:31 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CTX_H
 # define CTX_H
 
+# include <stdbool.h>
 # include <stdint.h>
 # include "player.h"
 # include "map.h"
@@ -25,6 +26,7 @@ typedef struct	s_ctx
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	uint32_t	tilesize;
+	bool		redraw;
 	double		player_rotation[4];
 	double		player_fast_rotation[4];
 }	t_ctx;
