@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:40:49 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/09 12:34:13 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:22:28 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,20 @@ t_map	*map_create()
 void	map_destroy(t_map **map)
 {
     t_map   *m;
+	int		i;
 
     if (map == NULL || *map == NULL)
         return ;
     m = *map;
-    if (m->no_texture != NULL)
-        free(m->no_texture);
-    if (m->so_texture != NULL)
-        free(m->so_texture);
-    if (m->we_texture != NULL)
-        free(m->we_texture);
-    if (m->ea_texture != NULL)
-        free(m->ea_texture);
+	i = -1;
+	while (++i < LAST_TEXTURE)
+	{
+		if (m->textures[i] != NULL)
+		{
+			free(m->textures[i]);
+			m->textures[i] = NULL;
+		}
+	}
     if (m->plane != NULL)
         ft_dispose_split(m->plane);
     free(*map);

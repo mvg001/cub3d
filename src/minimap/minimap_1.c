@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:55:27 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/22 15:36:58 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:18:25 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	minimap_draw(t_ctx *ctx)
 {
 	t_rectangle	wallpaper;
 
-	if (ctx == NULL || !ctx->redraw || !ctx->mmap.draw)
+	if (ctx == NULL || !ctx->redraw || !ctx->mmap.draw
+		|| ctx->mmap.tile_size <= 0)
 		return ;
 	wallpaper.pos.x = 0;
 	wallpaper.pos.y = 0;
@@ -92,17 +93,15 @@ void	minimap_draw(t_ctx *ctx)
 
 void	minimap_calculate(t_ctx *ctx)
 {
-	int	ts_x;
-	int	ts_y;
-	int	ts;
+	double	ts_y;
+	double	ts;
 
-	ts_x = round((WINDOW_WIDTH * MINIMAP_SCALE) / ctx->map->n_columns);
-	ts_y = round((WINDOW_WIDTH * MINIMAP_SCALE) / ctx->map->n_lines);
-	ts = ts_x;
-	if (ts < ts_y)
+	ts = round((WINDOW_WIDTH * MINIMAP_SCALE) / ctx->map->n_columns);
+	ts_y = round((WINDOW_HEIGHT * MINIMAP_SCALE) / ctx->map->n_lines);
+	if (ts > ts_y)
 		ts = ts_y;
 	if (ts < MINIMAP_MIN_TILESIZE)
-		ts = MINIMAP_MIN_TILESIZE;
+		ts = 0;
 	ctx->mmap.tile_size = ts;
 	ctx->mmap.draw = false;
 }

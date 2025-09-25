@@ -6,19 +6,19 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:51:48 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/22 16:36:47 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:26:04 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIMAP_H
 # define MINIMAP_H
-#include <stdbool.h>
 
+#include <stdbool.h>
 # define MINIMAP_TILE_COLOR     0x808080ff
 # define MINIMAP_RAY_COLOR		0xffff00ff
 # define MINIMAP_N_RAYS			7
-# define MINIMAP_SCALE			0.2
-# define MINIMAP_MIN_TILESIZE	4
+# define MINIMAP_SCALE			0.25
+# define MINIMAP_MIN_TILESIZE	6
 
 typedef struct s_minimap
 {

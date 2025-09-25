@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 19:53:56 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/22 15:08:18 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:27:55 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include "ctx.h"
 
 # define FOV			66		// degrees
-# define WINDOW_WIDTH	1024	// pixels
-# define WINDOW_HEIGHT	768		// pixels
+# define WINDOW_WIDTH	1280	// pixels
+# define WINDOW_HEIGHT			// pixels
 
 # define COLOR_BLACK	0x000000ff
 # define COLOR_RED		0xff0000ff

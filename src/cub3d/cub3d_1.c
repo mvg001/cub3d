@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 12:48:18 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/22 16:33:10 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:04:07 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,8 @@
 #include "ctx.h"
 #include "cub3d.h"
 #include "libft.h"
-#include "draw.h"
-#include "map.h"
 #include "minimap.h"
-#include "ray.h"
 #include <stdint.h>
-
-
 
 int run_app(t_ctx *ctx)
 {

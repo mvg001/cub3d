@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:13:58 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/15 15:44:51 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:14:30 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	map_print_plane(t_map *map)
 	}
     i = -1;
     ft_dprintf(2, "plane:\n");
-//    while (map->plane[++i] != NULL)
 	while (++i < map->n_lines)
         if (i < 10)
             ft_dprintf(2, " %d: '%s'\n", i, map->plane[i]);
@@ -82,8 +81,10 @@ int	map_print(t_map *map)
     if (map == NULL)
         return (0);
     ft_putendl_fd("\n### MAP:", 2);
-    ft_dprintf(2, "NO: '%s'\nSO: '%s'\n", map->no_texture, map->so_texture);
-    ft_dprintf(2, "WE: '%s'\nEA: '%s'\n", map->we_texture, map->ea_texture);
+    ft_dprintf(2, "NO: '%s'\nSO: '%s'\n", 
+		map->textures[NO_TEXTURE], map->textures[SO_TEXTURE]);
+    ft_dprintf(2, "WE: '%s'\nEA: '%s'\n", 
+		map->textures[WE_TEXTURE], map->textures[EA_TEXTURE]);
     ft_dprintf(2, "F: %x\nC: %x\n", map->floor_color, map->ceiling_color);
     ft_dprintf(2, "n_lines: %d\nn_columns: %d\n", map->n_lines, map->n_columns);
     ft_dprintf(2, "player_init_x: %d\n", map->player_init_x);
@@ -109,5 +110,3 @@ int	map_is_texture_ok(char *filename)
     close(fd);
     return (1);
 }
-
-

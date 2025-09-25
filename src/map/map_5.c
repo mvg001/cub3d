@@ -6,12 +6,26 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 12:39:08 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/16 12:03:30 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:58:42 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 #include "stdlib.h"
+
+int	map_get_cell(t_map *map, int x, int y)
+{
+	if (map == NULL || x < 0 || x >= map->n_columns
+		|| y < 0 || y >= map->n_lines)
+		return (-1);
+	return (map->plane[y][x]);
+}
+
+int	map_is_cell_wall(t_map *map, int x, int y)
+{
+	return (map_get_cell(map, x, y) != EMPTY_CHAR);
+}
+
 
 int	map_get_cell_d(t_map *map, double x, double y)
 {
@@ -26,12 +40,6 @@ int	map_get_cell_d(t_map *map, double x, double y)
 		return (-1);
 	return (map->plane[i][j]);
 }
-int	map_get_cell(t_map *map, t_vec2d *pos)
-{
-	if (map == NULL || pos == NULL)
-		return (-1);
-    return (map_get_cell_d(map, pos->x, pos->y));
-}
 
 int	map_is_cell_wall_d(t_map *map, double x, double y)
 {
@@ -43,11 +51,4 @@ int	map_is_cell_wall_d(t_map *map, double x, double y)
 	if (c < 0)
 		return (1);
 	return (c == WALL_CHAR);
-}
-
-int	map_is_cell_wall(t_map *map, t_vec2d *pos)
-{
-	if (map == NULL || pos == NULL)
-		return (1);
-    return (map_is_cell_wall_d(map, pos->x, pos->y));
 }

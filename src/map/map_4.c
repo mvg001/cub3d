@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:15:08 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/16 10:30:07 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:27:21 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,16 @@ int	map_set_player(t_map *map)
 
 t_map	*map_check(t_map *map)
 {
+	int	i;
+
 	if (map == NULL)
 		return (NULL);
-	if (!map_is_texture_ok(map->so_texture)
-		|| !map_is_texture_ok(map->so_texture)
-		|| !map_is_texture_ok(map->we_texture)
-		|| !map_is_texture_ok(map->ea_texture))
-		return (NULL);
+	i = -1;
+	while (++i < LAST_TEXTURE)
+	{
+		if (!map_is_texture_ok(map->textures[i]))
+			return (NULL);
+	}
 	if (!map_check_size(map))
 		return (NULL);
 	if (!map_adjust_lines(map))
