@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:10:28 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/22 16:35:10 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:59:26 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 static void	cub3d_draw_floor_ceiling(t_ctx *ctx)
 {
 	t_rectangle	r;
-	t_point		p;
 
 	r.pos.x = 0;
 	r.pos.y = 0;
@@ -31,8 +30,6 @@ static void	cub3d_draw_floor_ceiling(t_ctx *ctx)
 	draw_rectangle(ctx->img, &r, ctx->map->ceiling_color);
 	r.pos.y = r.height;
 	draw_rectangle(ctx->img, &r, ctx->map->floor_color);
-	p.x = ctx->img->width - 1;
-	p.y = r.pos.y;
 }
 
 static void	cub3d_draw_ray(t_ray *rays, uint32_t col, t_ctx *ctx, uint32_t color)

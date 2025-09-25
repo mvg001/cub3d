@@ -6,10 +6,11 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 11:40:55 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/22 15:37:49 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:03:51 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "MLX42/MLX42.h"
 #include "ctx.h"
 #include "cub3d.h"
 #include "libft.h"
@@ -19,14 +20,46 @@
 #include "vec2d.h"
 #include <stdint.h>
 
-static int	add_map_player(t_ctx *ctx, char *filename)
+static int	load_textures(t_ctx *ctx)
 {
-	if (ctx == NULL || filename == NULL)
+	int	i;
+
+	if (ctx == NULL || ctx->map == NULL)
 		return (0);
-	ctx->map = map_read(filename);
-	if (ctx->map == NULL)
+	i = -1;
+	while (++i < LAST_TEXTURE)
+	{
+		ctx->textures[i] = mlx_load_png(ctx->map->textures[i]);
+		if (ctx->textures[i] == NULL)
+		{
+			return (0);
+		}
+	}
+	return (1);
+}
+
+static int	destroy_textures(t_ctx *ctx)
+{
+	int	i;
+
+	if (ctx == NULL)
 		return (0);
-	ctx->player = player_create_char_dir(ctx->map->player_init_x + 0.5,
+	i = -1;
+	while (++i < LAST_TEXTURE)
+		if (ctx->textures[i] != NULL)
+		{
+			mlx_delete_texture(ctx->textures[i]);
+			ctx->textures[i] = NULL;
+		}
+	return (1);
+}
+
+static int	add_map_player(t_ctx *ctx)
+{
+	if (ctx == NULL)
+		return (0);
+	ctx->player = player_create_char_dir(
+		ctx->map->player_init_x + 0.5,
 		ctx->map->player_init_y + 0.5,
 		ctx->map->player_init_dir);
 	if (ctx->player == NULL)
@@ -43,7 +76,8 @@ t_ctx	*ctx_create(char *filename)
 	ctx = ft_calloc(1, sizeof(t_ctx));
 	if (ctx == NULL)
 		return (NULL);
-	if (!add_map_player(ctx, filename))
+	ctx->map = map_read(filename);
+	if (ctx->map == NULL || !add_map_player(ctx) || !load_textures(ctx))
 		return (ctx_destroy(&ctx), NULL);
 	minimap_calculate(ctx);
 	vec2d_gen_rotation_degree(ctx->player_rotation, PLAYER_ROTATION);
@@ -60,6 +94,7 @@ int		ctx_destroy(t_ctx **ctx)
 		player_destroy(&(*ctx)->player);
 	if ((*ctx)->map != NULL)
 		map_destroy(&(*ctx)->map);
+	destroy_textures(*ctx);
 	free(*ctx);
 	*ctx = NULL;
 	return (1);

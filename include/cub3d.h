@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 19:53:56 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/25 11:27:55 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/25 15:21:12 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include "ctx.h"
 
 # define FOV			66		// degrees
-# define WINDOW_WIDTH	1280	// pixels
-# define WINDOW_HEIGHT			// pixels
+# define WINDOW_WIDTH	1920	// pixels
+# define WINDOW_HEIGHT	1080	// pixels
 
 # define COLOR_BLACK	0x000000ff
 # define COLOR_RED		0xff0000ff
@@ -39,4 +39,6 @@ int		run_app(t_ctx *ctx);
 void	cub3d_key_callback(mlx_key_data_t keydata, void *param);
 void	cub3d_display_3d(void *param);
 void	cub3d_print_fps(mlx_t *mlx);
+int		cub3d_slice_texture(mlx_texture_t *txt, uint32_t col,
+	uint32_t len, uint32_t *col_pixes);
 #endif

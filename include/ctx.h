@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 11:38:50 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/22 15:12:02 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/25 12:11:51 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_ctx
 	t_minimap	mmap;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+	mlx_texture_t	*textures[LAST_TEXTURE];
 	bool		redraw;
 	double		player_rotation[4];
 	double		player_fast_rotation[4];
