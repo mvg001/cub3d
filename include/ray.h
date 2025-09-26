@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 10:42:53 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 14:37:39 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/26 11:40:36 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,11 @@
 #include "map.h"
 #include "player.h"
 
-typedef enum	s_face
-{
-	FACE_NORTH = 0,
-	FACE_SOUTH,
-	FACE_EAST,
-	FACE_WEST,
-}	t_face;
-
 typedef struct	s_ray
 {
 	t_vec2d	rdir;
 	t_vec2d	colision;
-	t_face	face;
+	t_tags	face;
 	double	len;
 	double	p_len;
 }	t_ray;

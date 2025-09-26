@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user1 <user1@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 19:53:56 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/25 22:46:07 by user1            ###   ########.fr       */
+/*   Updated: 2025/09/26 12:21:07 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdint.h>
 
 # define FOV			66		// degrees
-# define WINDOW_WIDTH	768	// pixels
+# define WINDOW_WIDTH	768		// pixels
 # define WINDOW_HEIGHT	512		// pixels
 
 # define COLOR_BLACK	0x000000ff
@@ -55,6 +55,6 @@ int		run_app(t_ctx *ctx);
 void	cub3d_key_callback(mlx_key_data_t keydata, void *param);
 void	cub3d_display_3d(void *param);
 void	cub3d_print_fps(mlx_t *mlx);
-int		cub3d_slice_texture(mlx_texture_t *txt, uint32_t col,
+int		cub3d_slice_texture(mlx_texture_t *txt, uint32_t txt_col,
 	uint32_t len, uint32_t *col_pixes);
 #endif

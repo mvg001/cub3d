@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 22:15:08 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/23 11:27:21 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/26 12:23:44 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_map	*map_check(t_map *map)
 	if (map == NULL)
 		return (NULL);
 	i = -1;
-	while (++i < LAST_TEXTURE)
+	while (++i < LAST_TAG)
 	{
 		if (!map_is_texture_ok(map->textures[i]))
 			return (NULL);

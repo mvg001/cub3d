@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:40:49 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/23 11:22:28 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/26 12:24:04 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	map_destroy(t_map **map)
         return ;
     m = *map;
 	i = -1;
-	while (++i < LAST_TEXTURE)
+	while (++i < LAST_TAG)
 	{
 		if (m->textures[i] != NULL)
 		{

@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:13:58 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/25 11:14:30 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/26 12:22:39 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ int	map_print(t_map *map)
         return (0);
     ft_putendl_fd("\n### MAP:", 2);
     ft_dprintf(2, "NO: '%s'\nSO: '%s'\n", 
-		map->textures[NO_TEXTURE], map->textures[SO_TEXTURE]);
+		map->textures[NORTH], map->textures[SOUTH]);
     ft_dprintf(2, "WE: '%s'\nEA: '%s'\n", 
-		map->textures[WE_TEXTURE], map->textures[EA_TEXTURE]);
+		map->textures[WEST], map->textures[EAST]);
     ft_dprintf(2, "F: %x\nC: %x\n", map->floor_color, map->ceiling_color);
     ft_dprintf(2, "n_lines: %d\nn_columns: %d\n", map->n_lines, map->n_columns);
     ft_dprintf(2, "player_init_x: %d\n", map->player_init_x);

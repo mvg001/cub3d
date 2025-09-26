@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 14:58:02 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/19 12:26:22 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/26 11:41:29 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ static void	ray_calculate(t_ray *ray, t_player *player, t_map *map)
 	if (rh.len < rv.len)
 	{
 		*ray = rh;
-		ray->face = FACE_NORTH;
+		ray->face = NORTH;
 		if (ray->rdir.y > 0.0)
-			ray->face = FACE_SOUTH;
+			ray->face = SOUTH;
 		return ;
 	}
 	*ray = rv;
-	ray->face = FACE_WEST;
+	ray->face = WEST;
 	if (ray->rdir.x > 0.0)
-		ray->face = FACE_EAST;
+		ray->face = EAST;
 }
 
 t_ray	*ray_casting(t_player *player, t_map *map, int n_rays)

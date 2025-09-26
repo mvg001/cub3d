@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 11:40:55 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/25 14:03:51 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/26 12:21:54 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	load_textures(t_ctx *ctx)
 	if (ctx == NULL || ctx->map == NULL)
 		return (0);
 	i = -1;
-	while (++i < LAST_TEXTURE)
+	while (++i < LAST_TAG)
 	{
 		ctx->textures[i] = mlx_load_png(ctx->map->textures[i]);
 		if (ctx->textures[i] == NULL)
@@ -45,7 +45,7 @@ static int	destroy_textures(t_ctx *ctx)
 	if (ctx == NULL)
 		return (0);
 	i = -1;
-	while (++i < LAST_TEXTURE)
+	while (++i < LAST_TAG)
 		if (ctx->textures[i] != NULL)
 		{
 			mlx_delete_texture(ctx->textures[i]);

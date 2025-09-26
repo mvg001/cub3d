@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:51:50 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/23 11:32:12 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/26 12:23:21 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static int	update_texture(char **words, t_map *map)
 	success = 1;
 	filename = ft_strtrim(words[1], " ");
 	if (ft_strcmp(words[0], "NO") == 0)
-		map->textures[NO_TEXTURE] = filename;
+		map->textures[NORTH] = filename;
 	else if (ft_strcmp(words[0], "SO") == 0)
-		map->textures[SO_TEXTURE] = filename;
+		map->textures[SOUTH] = filename;
 	else if (ft_strcmp(words[0], "WE") == 0)
-		map->textures[WE_TEXTURE] = filename;
+		map->textures[WEST] = filename;
 	else if (ft_strcmp(words[0], "EA") == 0)
-		map->textures[EA_TEXTURE] = filename;
+		map->textures[EAST] = filename;
 	else
 		success = 0;
 	free(words[1]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_4.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user1 <user1@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 14:15:17 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/25 18:29:00 by user1            ###   ########.fr       */
+/*   Updated: 2025/09/26 12:48:25 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ static uint32_t	calculate_pix(uint32_t *rgba, uint32_t w)
 		| ((rgba[3] & 0xff) << 24));
 }
 
-static void	add(uint32_t *s, uint32_t *c)
+static void	add(uint32_t *s, uint32_t *rgba)
 {
-	int	i;
-
-	i = -1;
-	while (++i < 4)
-		s[i] += c[i];
+	s[0] += rgba[0];
+	s[1] += rgba[1];
+	s[2] += rgba[2];
+	s[3] += rgba[3];
 }
 
 static void	init_p(uint32_t na, uint32_t nb, t_slice *p)
@@ -71,22 +70,22 @@ static void	init_p(uint32_t na, uint32_t nb, t_slice *p)
 	p->wb = p->lb;
 }
 
-int	cub3d_slice_texture(mlx_texture_t *txt, uint32_t src_col,
+int	cub3d_slice_texture(mlx_texture_t *txt, uint32_t txt_col,
 	uint32_t len, uint32_t *col_pixes)
 {
 	t_slice	p;
 
-	if (txt == NULL || col_pixes == NULL || src_col >= txt->width
+	if (txt == NULL || col_pixes == NULL || txt_col >= txt->width
 		|| txt->height == 0 || len > txt->height || len == 0)
 		return (0);
 	init_p(txt->height, len, &p);
-	get_txt_pix(txt, p.i, src_col, p.c);
+	get_txt_pix(txt, p.i, txt_col, p.c);
 	while (p.j < len)
 	{
 		if (p.wa == 0)
 		{
 			p.wa = p.la;
-			get_txt_pix(txt, ++p.i, src_col, p.c);
+			get_txt_pix(txt, ++p.i, txt_col, p.c);
 		}
 		if (p.wb == 0)
 		{

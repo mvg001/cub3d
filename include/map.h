@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:26:21 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/23 11:42:37 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/09/26 11:40:07 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@
 
 typedef enum	e_tags
 {
-	NO_TEXTURE = 0,
-	SO_TEXTURE,
-	WE_TEXTURE,
-	EA_TEXTURE,
-	LAST_TEXTURE,
+	NORTH = 0,
+	SOUTH,
+	WEST,
+	EAST,
+	LAST_TAG,
 }	t_tags;
 
 typedef struct s_map
 {
-	char		*textures[LAST_TEXTURE];
+	char		*textures[LAST_TAG];
     uint32_t   	floor_color;
     int 		ceiling_color;
     int			n_lines;
