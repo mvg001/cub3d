@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME   := cub3d.exe
+NAME   := cub3D
 CC     := cc
 CFLAGS := -Wall -Werror -Wextra -g3 -fsanitize=address -Ofast
 #CFLAGS := -Wall -Werror -Wextra -pthread -g3 -fsanitize=thread
