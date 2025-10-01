@@ -1,8 +1,8 @@
-NO ./cobblestone.png
-SO ./cobblestone.png
-WE ./cobblestone.png
-EA ./cobblestone.png
-F 128, 64,  0
+NO ./bricks2.png
+SO ./bricks2.png
+WE ./bricks2.png
+EA ./bricks2.png
+F 128, 128, 128
 C 112,163,204
 111111111111111111111111111111
 100000000000000000000000000001

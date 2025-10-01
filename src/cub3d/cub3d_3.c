@@ -6,7 +6,7 @@
 /*   By: mvassall <mvassall@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:10:28 by mvassall          #+#    #+#             */
-/*   Updated: 2025/09/26 12:42:02 by mvassall         ###   ########.fr       */
+/*   Updated: 2025/10/01 12:38:41 by mvassall         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 #include "ctx.h"
 #include "cub3d.h"
 #include "draw.h"
+#include "libft.h"
 #include "map.h"
 #include "minimap.h"
 #include "ray.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <sys/types.h>
 
 static void	cub3d_draw_floor_ceiling(t_ctx *ctx)
 {
@@ -94,32 +96,44 @@ static uint32_t	texture_column(t_ray *ray, t_ctx *ctx)
 		aux = (ray->colision.x - floor(ray->colision.x));
 	else
 	 	aux = (ray->colision.y - floor(ray->colision.y));
+	aux *= ctx->img->height;
 	return ((uint32_t)aux % ctx->textures[ray->face]->width);
 }
 
-static void	cub3d_draw_ray(t_ray *ray, uint32_t col, t_ctx *ctx)
+static uint32_t	get_texture_pixel(mlx_texture_t *t, uint32_t x, uint32_t y)
 {
-	t_point		p1;
-	uint32_t	h;
-	uint32_t	img_col[WINDOW_HEIGHT];
-	uint32_t	i;
-	mlx_texture_t	*txt;
-	
+	uint32_t	*p;
+
+	if (x >= t->width || y >= t->height)
+		return (COLOR_RED);
+	p = (uint32_t *)t->pixels;
+	return (p[y * t->width + x]);
+}
+
+static void	cub3d_draw_ray(t_ray *ray, uint32_t img_x, t_ctx *ctx)
+{
+	t_point			p1;
+	uint32_t		ray_h;
+	uint32_t		k;
+	mlx_texture_t	*tre;
+	double			c;
 
 	if (ray->p_len < 0.1)
 		ray->p_len = 0.1;
-	h = round(ctx->img->height / ray->p_len);
-	if (h >= ctx->img->height)
-		h = ctx->img->height - 1;
-	p1.x = col;
-	p1.y = (ctx->img->height - h + 1) / 2;
-	txt = ctx->textures[ray->face];
-	cub3d_slice_texture(txt, texture_column(ray, ctx),	h, img_col);
-	i = 0;
-	while (i < h)
+	ray_h = round(ctx->img->height / ray->p_len);
+	if (ray_h >= ctx->img->height)
+		ray_h = ctx->img->height - 1;
+	p1.x = img_x;
+	p1.y = (ctx->img->height - ray_h + 1) / 2;
+	tre = ctx->textures[ray->face];
+	c = round((tre->height - 1.0) / (ray_h - 1.0));
+	k = 0;
+	while (k < ray_h)
 	{
-		mlx_put_pixel(ctx->img, col, p1.y + i, img_col[i]);
-		i++;
+		mlx_put_pixel(ctx->img, 
+			img_x, p1.y + k,
+			get_texture_pixel(tre, texture_column(ray, ctx), c * k));
+		k++;
 	}
 }
 
@@ -128,7 +142,7 @@ void	cub3d_display_3d(void *param)
 {
 	t_ctx		*ctx;
 	t_ray		*rays;
-	uint32_t	i;
+	uint32_t	x;
 
 	ctx = (t_ctx *)param;
 	cub3d_print_fps(ctx->mlx);
@@ -138,11 +152,11 @@ void	cub3d_display_3d(void *param)
 	rays = ray_casting(ctx->player, ctx->map, ctx->img->width);
 	if (rays != NULL)
 	{
-		i = 0;
-		while (i < ctx->img->width)
+		x = 0;
+		while (x < ctx->img->width)
 		{
-			cub3d_draw_ray(rays + i, i, ctx);
-			i++;
+			cub3d_draw_ray(rays + x, x, ctx);
+			x++;
 		}
 		free(rays);
 		if (ctx->mmap.draw)
